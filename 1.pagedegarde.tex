@@ -1,0 +1,113 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage[utf8]{inputenc} 
+\usepackage[french]{babel} 
+\usepackage[T1]{fontenc} 
+\usepackage[cyr]{aeguill}
+\usepackage{fancyhdr}
+\usepackage[Glenn]{fncychap}%chapitre deco
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{ {figures/} }
+\usepackage{titlesec}
+\usepackage{ textcomp,gensymb }
+
+
+\usepackage{anysize}
+\marginsize{20mm}{20mm}{25mm}{20mm}
+
+\usepackage{fancyhdr}% entete
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth } { 0pt } 
+\renewcommand{\footrulewidth } { 0pt }
+
+
+%\lhead{\includegraphics[width=2cm,height=2cm]{pagedegarde/usthb_logo.png}  }
+%\rhead{\includegraphics[width=2cm,height=2cm]{pagedegarde/usthb_logo.png}  }
+\chead{ République Algérienne Démocratique et Populaire \\ 
+        Ministère de l’Enseignement Supérieur et de la Recherche Scientifique \\
+        \textbf{Université des Sciences et de la Technologie Houari Boumediene}\\
+        Faculté d’Électronique et d’Informatique\\
+        Département Informatique\\
+        }
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+	\draw[very thick]
+		([yshift=-30pt,xshift=30pt]current page.north west)--
+		([yshift=-30pt,xshift=-30pt]current page.north east)--                      %pour encadrer la page
+		([yshift=30pt,xshift=-30pt]current page.south east)--
+		([yshift=30pt,xshift=30pt]current page.south west)--cycle;
+\end{tikzpicture}
+
+\begin{center}
+%\setlength{\parskip}{6ex plus 0.5ex minus 0.2ex}                     %espace au dessus du texte
+\renewcommand{\baselinestretch}{0.5}\small \normalsize        %espace interligne
+\setlength{\parskip}{4ex plus 0.5ex minus 0.2ex}
+\includegraphics[width=0.3\textwidth]{pagedegarde/usthb_logo.png}\\
+\end{center}
+
+\begin{center}
+
+\renewcommand{\baselinestretch}{1.2}\small \normalsize
+\textbf{\LARGE{Mémoire de Master}\\}
+\large{Domaine : Informatique\\}
+\textbf{\large{Spécialité : }}
+\textbf{\large{Bio-Informatique (BIOINFO)}}
+\end{center}
+
+\hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+\begin{center}
+
+\renewcommand{\baselinestretch}{1}\small \normalsize
+{ \large \sc Thème}
+\begin{center}
+\renewcommand{\baselinestretch}{1.5}\small \normalsize
+{\LARGE \sc Recommandation d’articles scientifiques basée sur les citations et leurs contextes}   
+\end{center}
+\end{center}
+\hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+
+\begin{center}
+\setlength{\parskip}{4ex plus 0.5ex minus 0.2ex}
+Présenté par: 
+\end{center}
+
+\begin{center}
+{\large{\textbf{M. SAIDANI Ayoub Youcef }}}
+\end{center}
+
+\begin{center}
+\setlength{\parskip}{3ex plus 0.5ex minus 0.2ex}
+Encadré par:
+\end{center}
+
+
+\begin{center}
+{\large{\textbf{Phd. ALIANE Hassina (CERIST)} }}
+\end{center}
+
+\begin{center}
+\setlength{\parskip}{3ex plus 0.5ex minus 0.2ex}
+
+Soutenu le: \\
+{\large \bf{25/10/2021}}
+\end{center}
+\begin{center}
+\setlength{\parskip}{4ex plus 0.5ex minus 0.2ex}
+Devant le jury composé de:
+\end{center}
+
+\begin{center}  
+\textbf{{\large{Président : Mme. TAMEN Zahia}}}\\
+\textbf{{\large{Membre: Mme. BENBAZIZ Zakia }}}
+\end{center}
+
+\begin{center}  
+\setlength{\parskip}{6ex plus 0.5ex minus 0.2ex}
+Monôme n$^{\circ}$ : BIO012/2021 
+\end{center}
+
+\end{document}

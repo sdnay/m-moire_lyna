@@ -1,0 +1,540 @@
+\chapter{\textbf{Deep Learning et traitement de langage naturel}}\label{chapitre2}
+
+\section{Introduction}
+\par Aujourd’hui, l’une des tâches les plus populaires en data science, le Deep Learning, il représente la plus grande part de la recherche effectuée par des spécialistes, en particulier dans la mesure où elle intervient dans le cadre de divers domaines, tels que La recherche en médecine, le traitement du langage naturel (NLP) et autres. À l’heure actuelle, le nombre de publications de recherche sur les méthodes de recommandation basées sur l'apprentissage en profondeur et son intégration a augmenté de façon exponentielle au cours de ces dernères années.
+
+\par Au cours de ce chapitre nous allons définir qu'est-ce-que le Deep Learning, nous découvrirons, ainsi,  certaines architectures ainsi que sur les différentes approches de ce dernier, quelques modèles de l'apprentissage profond, et voir aussi sa relation avec la recommandation. 
+Enfin, nous évoquerons le traitement du langage naturel, son avancée grace au deep learning avant et après, sans oublier de citer quelques modèles de ce derniers, et finir avec une conclusion sur ce chapitre.
+
+
+\par En seconde partie du traitement du langage naturel, nous allons définir qu'est-ce-que le traitement du lanagage naturel, le domaine d'application du nlp ainsi que l'avancé qu'a pu avoir la nlp grace au deep learning et nous finirons par connaitre BERT plus en profondeur.
+
+\par Enfin, nous finirons par parler de la recommandation et son amélioration et pour cela en l'associant au deep learning. en derniers lieu nous conclurons le chapitre. 
+
+\section{Deep Learning}
+    
+    \includegraphics[width=\textwidth]{figures/chapitre2/dlcerv.png} %source : \cite{ann}
+    
+    \subsection{Définition du deep learning}
+    \par Le Deep Learning (DL) ou l’apprentissage profond en francais est un sous-ensemble de l'intelligence artificielle (IA). Ce terme désigne l'ensemble des techniques d'apprentissage automatique du Machine Learning (ML) dit l’apprentissage automatique, qui est essentiellement un réseaux de neurones artificiels, comme le montre la (FIGURE~\ref{fig:fig1ch2}).
+    
+    \par Ces réseaux neuronaux tentent d'imiter le comportement d'un cerveau humain, inspiré des neurones biologiques, ce qui lui permet d'« apprendre » à réaliser n'importe quel tâche (conduire une voiture, jouer aux échecs ou encore entretenir une conversation etc...) et ça à partir d'énormes quantités de données, grace à plusieurs niveaux de couches neuronals. Alors qu’un réseau neuronal avec une seule couche peut toujours faire des prédictions approximatives, des couches masquées supplémentaires peuvent aider à optimiser et à affiner la précision \cite{ch2ref1,ch2ref2}.
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=0.6\textwidth]{figures/chapitre2/deeplearning.png}
+    	\end{center}
+    	\caption {DL sous-ensemble de ML}
+    	\label{fig:fig1ch2}
+    \end{figure} 
+    
+    \subsection{Différence entre deep learning et machine learning }
+    \par L’apprentissage profond est une forme spécialisée d’apprentissage automatique. Un flux de travail d’apprentissage automatique commence par l’extraction manuelle des fonctionnalités pertinentes par exemple à partir d’images comme dans (la FIGURE~\ref{fig:fig2ch2}). Les fonctions sont ensuite utilisées pour créer un modèle qui catégorise les objets de l’image. Avec un flux de travail d’apprentissage profond, les fonctionnalités pertinentes sont automatiquement extraites des images. En outre, l’apprentissage profond effectue un « apprentissage de bout en bout » - où un réseau reçoit des données brutes et une tâche à effectuer, telle que la classification, et il apprend à le faire automatiquement \cite{ch2ref15}.
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=0.9\textwidth]{figures/chapitre2/deep-learning-vs-machine-learning.png}
+    	\end{center}
+    	\caption {Comparaison d'une approche d'apprentissage automatique pour catégoriser les véhicules (à gauche) avec l'apprentissage en profondeur (à droite)  \cite{ch2ref14}}
+    	\label{fig:fig2ch2}
+    \end{figure}
+    
+    \par Une autre différence clé est que les algorithmes d’apprentissage profond évoluent avec les données, tandis que l’apprentissage superficiel converge. L’apprentissage superficiel fait référence aux méthodes d’apprentissage automatique qui plafonnent à un certain niveau de performance lorsque vous ajoutez plus d’exemples et de données d’entraînement au réseau. 
+    
+    \par Dans l’apprentissage automatique, vous choisissez manuellement des fonctionnalités et un classificateur pour trier les données. Avec l’apprentissage profond, les étapes d’extraction et de modélisation des fonctionnalités sont automatiques.
+    
+    \subsection{Popularité du Deep learning  }
+    \par La popularité du Deep Learning est en majorité due à sa capacité à résoudre plusieurs types de problèmes. Il automatise également une partie importante (et pas évidente) du processus de Machine Learning \cite{ch2ref12,ch2ref1,ch2ref2}.
+    
+    \par Par ailleurs, les avancées en terme de puissance de traitement des systèmes informatiques dans les années précédentes ont favorisé la démocratisation du Deep Learning avec l’apparition et la vulgarisation des GPUs et des TPUs optimisées pour l'apprentissage profond et rendus de plus en plus accessibles au travers de produits à coûts inexistant ou réduits tels que NVIDIA (Jetson Nano) ou Google Colab. De plus, les données nécessaires à l’entrainement de réseaux de neurones performants sont de plus en plus nombreuses et bien plus facilement collectables à partir de sites populaires comme Youtube, Wikipedia ou encore depuis des répertoires de données spécialement dédiés au Deep Learning \cite{ch2ref12,ch2ref1,ch2ref2}. 
+    
+    \par L'une des raisons majeures de la popularité du Deep Learning est aussi le fait que les algorithmes évoluent très rapidement et les différents types de configuration existant pour les réseaux de neurones ont évolué très rapidement au cours des dernières années pour permettre la construction de réseaux de plus en plus performant \cite{ch2ref12,ch2ref1,ch2ref2}. 
+    
+    \par Enfin, il est important de mentionner que la popularité du Deep Learning est dûe aussi au fait que les réseaux de neurones peuvent être réutilisés et améliorés pour accomplir des tâches autres que celle pour lesquelles elles ont été initialement construites, ce qui occasionne un gain de temps considérable et une réduction importante de la charge de travail \cite{ch2ref12,ch2ref1,ch2ref2}.
+    
+    \subsection{Domain d'application du deep learning }
+    \par Les applications du deep learning vont de la conduite autonome aux dispositifs médicaux et dans bien d'autres domaines tels que : \cite{ch2ref14} 
+    
+    \begin{itemize}[label=-] 
+    \setlength{\itemsep}{5pt}
+        \item \textbf{Conduite autonome : }Les chercheurs automobiles utilisent l’apprentissage profond pour détecter automatiquement des objets tels que les panneaux d’arrêt et les feux de circulation. De plus, l’apprentissage profond est utilisé pour détecter les piétons, ce qui contribue à réduire les accidents.
+        
+        \item \textbf{Aérospatiale et défense : }Le deep Learning est utilisé pour identifier des objets provenant de satellites qui localisent des zones d’intérêt et identifier des zones sûres ou dangereuses pour les troupes.
+        
+        \item \textbf{ Recherche médicale :}les chercheurs sur le cancer utilisent l’apprentissage en profondeur pour détecter automatiquement les cellules cancéreuses. Les équipes de l’UCLA ont construit un microscope avancé qui fournit un ensemble de données de grande dimension utilisé pour former une application de deep learning afin d’identifier avec précision les cellules cancéreuses.
+        
+        \item \textbf{Électronique : } L’apprentissage profond est utilisé dans la traduction automatique (Exemple du service google traduction). Par exemple, les appareils d’assistance à domicile qui répondent à votre voix et connaissent vos préférences sont alimentés par des applications d’apprentissage en profondeur.
+    \end{itemize}
+    
+    Ainsi que d’autres applications du deep learning dans : \cite{ch2ref14}
+    
+    \begin{itemize}[label=•] %•
+    \setlength{\itemsep}{5pt}
+        \item Reconnaissance d’images,
+        \item Recommandations personnalisées (RS),
+        \item Traitement du langage naturel (NLP),
+        \item Modération automatique des réseaux sociaux,
+        \item Prédiction financière et trading automatisé,
+        \item Identification de pièces défectueuses,
+        \item Détection de malwares ou de fraudes,
+        \item Chatbots (agents conversationnels),
+        \item Robots intelligents.
+    \end{itemize}
+    
+
+    
+    \subsection{Force et faiblaisse du deep learning}
+    
+        \subsubsection{Les points forts }
+        \par Le plus grand point fort du Deep learning c'est la qualité des résultats obtenus, ils sont meilleurs qu'avec d'autres méthodes de machine learning. En dernier, sans oublier que plus les données augmentent, la capacité d'amélioration des réseaux du deep learning va croître en même temps, c'est un avantage majeur \cite{ch2ref9}.
+        
+        \subsubsection{Les points faibles }
+        \par L'un des points faibles du deep learning est que non seulement il nécessite une grande puissance de calcul, mais c'est aussi une technologie coûteuse à mettre en place. Sur un autre point, l’une des problématiques que pose cette intelligence artificielle est la complexité et le volume de données que requiert son fonctionnement ainsi que le fait qu’il nécessite une vaste base de données et bien d'autres limites \cite{ch2ref9}.
+        
+    
+        \subsection{Réseaux de neurones}
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.8\textwidth]{figures/chapitre2/topodl1.png}
+        	\end{center}
+        	\caption {Structure de base d'un réseau de neurones \cite{ch2ref12}}
+        	\label{fig:rn_perceptron}
+        \end{figure}
+       
+        \par Il s'agit comme le nom le sous-entend d'un regroupement de composantes de base appelés neurones qui sont interconnectés entre eux comme le montre (la FIGURE~\ref{fig:rn_perceptron}). N'importe quel réseau de neurones se compose automatiquement de 3 types de couches : \cite{ch2ref12,ch2ref4, ch2ref5}
+        
+        \begin{itemize}[label=•] %•
+        \setlength{\itemsep}{5pt}
+            \item \textbf{Input layer (couche d'entrée) :} Elle contient des neurones qui ont des valeurs du tenseur de la donnée sur laquelle on souhaite travailer (soit un texte, une image, etc...). Un tenseur ou tensor en anglais,  est tout simplement une représentation multidimensionelle de ces données d'entrées. Il peut être un vecteur, une matrice ou une structure de données d'une plus grande dimension.
+            
+            \item \textbf{Hidden layer (couche cachée/médiane) :} Elles contiennent des valeurs intermédiaires calculées lors de l'entrainement du réseau de neurones afin de "capturer" les variables qui permettront à partir des données entrées, d'obtenir le résultat attendu. Par exemple, les neurones cachées permettront de capturer la relation entre une image d'un chiot (représentée sous forme de tenseur) et la catégorie "chien" dans laquelle il est sensé être classifié.
+            
+            \item \textbf{Output layer (couche de sortie) :}  Elle contient des neurones ayant comme valeurs le résultat de notre opération. Par exemple, Pour un problème de classification d'image de chats et de chiens, on pourra avoir deux neurones de sortie contenant la probabilité que l'image soit effectivement un chat ou un chien.
+            
+        \end{itemize}
+        
+        \par L'appellation « profond » vise généralement le nombre de couches cachées d'un réseau neuronal, ces derniers dans la forme la plus basique se compose de 2 à 3 couches comme on peux le voir dans (la FIGURE~\ref{fig:rn_perceptron}), mais dans le cas d'un réseau de DL on peux compter jusqu'à 150 \cite{ch2ref5}.
+        
+        \par L'utilisation de la structure de couche de réseau neuronal en entassant plusieurs couches les unes sur les autres, de tel sorte à favoriser le mécanisme de décomposition. Par conséquent, chaque couche d'un réseau de neurones profonds (DNN) fonctionne comme une seule transformation pour extraire davantage de données. 
+
+        
+            % Fonctionnement du Deep Learning %
+            \subsubsection{Fonctionnement des réseaux de neurones }
+            
+            \par Pour comprendre le fonctionnement d'un réseau de neurones, il faut tout d'abord comprendre comment fonctionne un simple perceptron voir Figure~\ref{fig:perceptron_gn}. Le perceptron est le simple et le plus petit réseau de neurones qui puisse exister. \cite{ch2ref12,ch2ref5,ch2ref4}.
+            
+            
+            
+            % \begin{subfigure}[b]{\textwidth}
+            \begin{figure}[H]
+                 \centering
+                 \begin{minipage}[t]{.7\textwidth}
+                     \centering
+                     \includegraphics[width=\textwidth]{figures/chapitre2/perceptron.png}
+                     \caption{Perceptron simple | source : \cite{ch2ref12}}
+                     \label{fig:perceptron_s}
+                 \end{minipage}
+                 \hfill
+                 \begin{minipage}[t]{.7\textwidth}
+                     \centering
+                     \includegraphics[width=\textwidth]{figures/chapitre2/peract.png}
+                     \caption{Perceptron détailler | source : Google Img}
+                     \label{fig:perceptron_d}
+                 \end{minipage}
+                 \hfill
+                    \caption {Modèle d'un perceptron}
+                    \label{fig:perceptron_gn}
+            \end{figure}
+        
+            \par Étant donné un set de données d’entrée réduites en tensor \( Xi = [x1, x2, .. , xn] \), relier à une fonction de transfert, pour au final retourner en sortie \( Y \), chaque liaison qui les relie au neurone qui la précéde est associé avec des poids \( Wi = [w1, w2, .. , wn] \). Ces poids multiplient les entrées \( Xi \) ils sont ajoutées au bias avant d'être passées par une fonction d’activation \( f \) (sigmoid, ReLU, softmax etc..). La donnée de sortie de chaque neurone du réseau peut donc être représentée comme :
+                \[ y = f(x1.w1 + x2.w2 + .. + xn.wn + bias) \]
+    
+            \subsubsection{Entrainement du réseau de neurone}
+            \par  L’entraînement d’un réseau de neurones comprend deux étapes principales : \cite{ch2ref12} \\
+            
+            \begin{itemize}[label=•] %•
+            \setlength{\itemsep}{5pt}
+            
+                \item \textbf{ForwardPropagation :} 
+                \par Chaque neurone de la première couche cachée reçoit en entrée les valeurs de la couche d'entrée multipliées par les poids des connections les reliant, le tout passé au travers de la fonction associée à tous les neurones de la couche en question. Ce résultat est ensuite passé comme entrée aux neurones de la seconde couche cachée et ainsi de suite jusqu'à ce que l'on obtienne les résultats de la couche de sortie.\\
+                
+                \par Cost function ou  fonction de perte en francais, va permettre de calculer la différence entre le résultat obtenu par le réseau et le résultat correct. Cette différence sera utilisée pour modifier les poids des connections afin que les prochaines prédictions soient plus précises. C’est en cela que consiste l’entrainement du réseau de neurones. \\
+        
+                \item \textbf{BackPropagation :} 
+                \par Dans le but de faire des prédictions plus précises, il faut être en mesure de diminuer le résultat de la fonction de perte qui calcule la différence entre les résultats corrects et les résultats prédits. L'une des fonctions de perte les plus populaires est le MSE (Mean Squared Error) ou Erreur Quadratique Moyenne dont la formule est la suivante : 
+                
+                \begin{gather*}
+                    MSE = \;  moyenne [ ( y - y^\prime ) ]
+                \end{gather*}
+                
+                \par Avec :
+                    \begin{itemize}[label=-] %•
+                    \setlength{\itemsep}{5pt}
+                        \item \textbf{moyenne :}  la fonction calculant la moyenne arithmétique.
+                        \item \textbf{y :} la valeur de sortie correcte.
+                        \item \textbf{y’ :} la valeur de sortie prédite.\\
+                    \end{itemize}
+                
+                \par Une fois la perte calculée, la fonction de perte est dérivée pour en trouver le minimum (selon que nous savons que si la dérivée première d’une fonction s’annule en changeant de signe en un point donné alors ce point représente potentiellement un minmum de la fonction en question).\\
+                \par Le but ici est de trouver le signe de la dérivée afin de savoir si les poids des connexions (les inconnues de notre équation) doivent être augmentés ou diminués afin de minimiser la perte et donc de faire des prédictions plus exactes.
+                
+            \end{itemize}
+
+            \subsubsection{Fonction d'activation}
+            \par Voici quelques fonctions d'activation parmis tant d'autres
+            
+            \begin{itemize}[label=•] 
+            \setlength{\itemsep}{5pt}
+            
+                \item \textbf{Sigmoid :} Historiquement, la fonction Sigmoîde est la fonction d’activation la plus ancienne et la plus populaire. La formule pour la fonction Sigmoîde est définie comme \cite{ch2ref6,ch2ref12} :
+                \begin{gather*}
+                    \sigma( x ) = \;  \frac{ 1 }{1 + e^{ -x } }
+                \end{gather*}
+                
+                Avec $ e $ est la constante exponentielle, à peu près à $2.71828$. Un neurone qui utilise un sigmoîde comme fonction d’activation est appelé un neurone sigmoîde. Nous fixons d’abord la variable $ z $ à la somme pondérée des entrées, puis la transmettons à la fonction sigmoîde.
+                \[ z = \;  b + { \sum{ ( {w_i} \times {x_i} ) } } \]
+                
+                \begin{equation}
+                    \sigma( z ) = \;  \frac{ 1 }{1 + e^{ -z } }
+                \end{equation}
+                
+                % Sigmoid %%
+                
+                \begin{figure}[H]
+                	\begin{center}
+                        \begin{tikzpicture}
+                        \begin{axis}[
+                            axis lines=middle,
+                            xmax=10,
+                            xmin=-10,
+                            ymin=-0.05,
+                            ymax=1.05,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                        ]
+                        \addplot [domain=-9.5:9.5, samples=100, thick, blue] {1/(1+exp(-x)};
+                        \end{axis}
+                        \end{tikzpicture}          		
+                	\end{center}
+                	\caption {Fonctions d'activation Sigmoid}
+                	\label{fig:sigmoid}
+                \end{figure}         
+                
+                Nous avons le graphe représantant la fonction d'activation Sigmoîde dans la FIGURE~\ref{fig:sigmoid}. Nous pouvons voir que \( \sigma(z) \) agit comme une sorte de fonction d’écrasement, qui condense notre sortie précédente non bornée de \textbf{0 à 1}. Au centre, où : \\
+                \begin{gather*}
+                    z= \; 0, \sigma(0) = \; \frac{1}{ 1 + e^{0} } = \;  \frac{1}{2}
+                \end{gather*}
+                
+                Pour les grandes valeurs négatives de ${z}$, le terme $e^{-z}$ dans le dénominateur croît exponentiellement, et \( \sigma(z) \) se rapproche de \textbf{0}. Inversement, les valeurs positives élevées de ${z}$ rétrécit $e^{-z}$ à \textbf{0}, donc \( \sigma(z) \) se rapproche de \textbf{1}. La fonction sigmoïd est continuellement différentiable et sa dérivée est :
+                \begin{gather*}
+                    \sigma^{\prime} (z) = \; \sigma(z)(1-\sigma(z))    
+                \end{gather*}
+                
+                C’est important parce que nous devons utiliser ce calcul pour entraîner les réseaux de neurones, mais ne vous en faites pas pour le moment. Les neurones sigmoïdes ont été la base de la plupart des réseaux neuronaux pendant des décennies, mais ces derniéres années ils sont devenus obsolètes. En résumé, ils rendent difficiles les réseaux de neurones qui ont beaucoup de couches à former en raison du problème du gradient de fuite. Au lieu de cela, la plupart ont changé pour utiliser un autre type de fonction d’activation \cite{ch2ref6,ch2ref12, ch2ref13}.\\   
+                
+                \item \textbf{ReLU :} L’unité linéaire rectifiée, ou ReLU. Elle est simplement défini comme :
+                \begin{equation}
+                    R(x) = \;  max(0,x)
+                \end{equation}
+                
+                Autrement dit, les fonctions $ReLU$, laissent toutes les valeurs positives passéEs inchangées et attribuent simplement \textbf{0} aux valeurs négatives. Bien que les nouvelles fonctions d’activation gagnent du terrain, la plupart des réseaux neuronaux actuels utilisent $ReLU$ ou l’une de ses variantes proches. 
+                Ci-dessous le graphe représantant la fonction d'activation $ReLU$ dans la FIGURE~\ref{fig:relu}. \cite{ch2ref6,ch2ref12,ch2ref13}
+                
+                %% RELU %%
+                \begin{figure}[H]
+                	\begin{center}
+                        \begin{tikzpicture}
+                        \begin{axis}[
+                            axis lines=middle,
+                            xmax=6,
+                            xmin=-6,
+                            ymin=-0.05,
+                            ymax=5.05,
+                            xlabel={$x$},
+                            ylabel={$y$}]
+                        \addplot [domain=-5.5:5.5, samples=100, thick, blue] {max(0, x)};
+                        \end{axis}
+                        \end{tikzpicture}        		
+                	\end{center}
+                	\caption {Fonctions d'activation ReLU}
+                	\label{fig:relu}
+                \end{figure}  
+
+                \item \textbf{Softmax :} La fonction softmax est également un type de fonction sigmoïde, qui calcule les probabilités de l’événement sur ‘n’ différentes classes, ce qui sera pratique lorsque nous essayerons de gérer des problèmes de classification multi-class. \cite{ch2ref6, ch2ref12}. Avec la fonction :
+                \begin{equation}\label{softmax}
+                    \sigma (z)_j = \;  \frac{e^{z_j}}{\sum^K_{k=1} e^{z_j}}
+                \end{equation}
+                
+                 \end{itemize}
+
+
+    \subsection{Modèles de deep learning}
+    
+    \par Les architectures neuronales ont démontré un énorme succès dans les tâches d'apprentissage supervisées et non supervisées.
+    Selon le type de neurones et le type de leur interconnexion, plusieurs architectures de réseaux de neurones existent permettant de résoudre différents problèmes. Pour avoir une idée, dans cette section nous allons découvrire quelque unes de ces architectures \cite{ch2ref12}.
+    
+    \begin{itemize}
+    \setlength{\itemsep}{5pt}
+
+		\item \textbf{Multilayer Perceptron (MLP) :} est un réseau de neurones à action directe avec une ou plusieurs couches cachées (hidden layer) entre la couche d'entrée (input layer) et la couche de sortie (Output layer) voir (FIGURE~\ref{fig:MLP}). Ici, le perceptron peut employer une fonction d'activation arbitraire et ne représente pas nécessairement un classificateur strictement binaire. 
+		Les MLP peuvent être interprétés comme des couches empilées de transformations non linéaires, apprenant les représentations d'entités hiérarchiques. Ils sont également connus pour être des approximateurs universels \cite{ch2ref4}.
+		
+		\begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre2/topodl2.png}
+        	\end{center}
+        	\caption {Modèle du Multilayer Perceptron (MLP) }
+        	\label{fig:MLP}
+        \end{figure}
+		
+		\item \textbf{Auto-Encodeur (AE) :}	est un modèle non supervisé qui se vide pour reconstruire ses données d'entrée dans la couche de sortie ( la figure~\ref{fig:AE} ). En général, la couche du goulot d'étranglement (la couche la plus médiane) est utilisée comme représentation caractéristique des données d'entrée. Il existe de nombreuses variantes d'autoencodeurs tels que l'autoencodeur à débruitage, l'autoencodeur à débruitage marginalisé, l'autoencodeur clairsemé, l'autoencodeur contractif et l'autoencodeur variationnel (VAE) \cite{ch2ref4}.
+
+		\begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.7\textwidth]{figures/chapitre2/AE.png}
+        	\end{center}
+        	\caption {Modèle du AutoEncoder (AE) \cite{ch2ref12}}
+        	\label{fig:AE}
+        \end{figure}
+
+		\item \textbf{Recurrent Neural Network (RNN) :} est un réseaux neuronal qui convient à la modélisation de données séquentielles. Contrairement au réseau de neurones feedforward, il y a des boucles et des mémoires dans RNN ( la figure~\ref{fig:RNN} ), pour se souvenir d'anciens calculs. Des variantes telles que la mémoire à long court terme (LSTM) et le réseau d'unité récurrente à grille (GRU) sont souvent déployées dans la pratique pour surmonter le problème du gradient de fuite \cite{ch2ref4}.
+		
+		\begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre2/RNN.png}
+        	\end{center}
+        	\caption {Modèle du Recurrent Neural Network (RNN) \cite{ch2ref12}}
+        	\label{fig:RNN}
+        \end{figure}		
+		
+		\item \textbf{Convolutional Neural Network (CNN) :} est un type spécial de réseau de neurones à action directe avec des couches de conversion et des opérations de mise en commun ( la figure~\ref{fig:CNN} ). Il peut  capturer les caractéristiques globales et locales et améliorer considérablement l'efficacité et la précision. Il fonctionne bien dans le traitement des données avec une topologie de type grille \cite{ch2ref4}.
+
+		\begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre2/CNN.png}
+        	\end{center}
+        	\caption {Modèle du Convolutional Neural Network (CNN) \cite{ch2ref12}}
+        	\label{fig:CNN}
+        \end{figure}
+
+		\item \textbf{Graph Convolution Network (GCN) :} sont des réseaux de neurones convolutifs (CNN) aux données structurées en graphes ( la figure~\ref{fig:GCN} ). Pour apprendre les représentations de graphes, l'opération « graph convolution » applique la même transformation linéaire à tous les voisins d'un nœud suivie d'une fonction d'activation non linéaire. Ces dernières années, les GCN et leurs variantes et ont été appliqués avec succès à un large éventail d'applications, y compris l'analyse sociale, biologie, et notament les systèmes de recommandation \cite{ch2ref3}. 
+
+		\begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth, height=7cm]{figures/chapitre2/GCN.png}
+        	\end{center}
+        	\caption {Modèle du GCN (Graph Convolution Network) \cite{ch2ref12}}
+        	\label{fig:GCN}
+        \end{figure}
+
+    \end{itemize}
+    
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% NLP %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Traitement du langage naturel}
+
+    \subsection{Définition Traitement du langage naturel}
+    \par Le natural language processing (NLP), ou traitement du langage naturel, est une branche de l'IA qui explore à comprendre le langage humain tel qu'il se présente (écrit et/ou parlé) ainsi pour manipuler du texte ou des mots. Pour ce faire, de nombreux recherches et applications spécifiques sont développés dans l'optique de réaliser des tâches utiles en utilisant l'ordinateur.
+    En effet, un ordinateur réclame qu'on lui parle dans un langage de programmation qui lui est propre non ambigu et surtout comprehensif\cite{ch2ref8, ch2ref5}.  
+    
+    Le NLP est un sous-domaine de la science informatique. En règle générale, cela fait référence à des tâches telles que la compréhension du sentiment du texte, la reconnaissance de la parole et la génération de réponses aux questions etc.. \cite{ch2ref8, ch2ref5}.
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=0.93\textwidth]{figures/chapitre2/npldlia.png}
+    	\end{center}
+    	\caption {Schéma représentatif du NLP, DL et ML au sein de l'IA}
+    	\label{fig:fig5ch2}
+    \end{figure} 
+    
+    %\subsection{L'objectif du NLP}
+    %\par Le domaine du traitement du langage naturel (NLP) vise à convertir le langage humain en une représentation formelle facile à %manipuler par les ordinateurs pour étudier des problèmes fondamentaux du traitement de la langue naturelle , ce qui est bien adapté à %la modélisation des données textuelles afin d’en extraire des informations et, éventuellement, de représenter les mêmes informations %différemment.
+    
+    \subsection{Domaine d'application du NLP}
+    \par Le NLP a mis en lumière sur l'analyse du langage humain, il intervient dans beaucoup de domaine d'application. il permet de répondre à différents besoins, on le retrouve dans les moteurs de recherche, Il touche à beaucoup d'aspects de la vie humaine et Voici quelques exemples d'application du NLP \cite{ch2ref8, ch2ref9}. 
+    
+    \begin{itemize}[label=•] 
+    \setlength{\itemsep}{5pt}
+        \item Classification et catégorisation du texte
+        \item Traduction automatique
+        \item Reconnaissance vocale
+        \item aide à la rédaction
+        \item Résumé de document
+        \item Réponse aux questions
+    \end{itemize}
+
+    \subsection{Deep learning et NLP}
+    \par Dix ans en arrière, le traitement du langage naturel est devenu l'un des domaines clés de l'IA avec les techniques du deep learning améliorant considérablement les performances dans énormement d'aspect et tâches. Devenue l'un des sujets les plus en vogue dans le domaine des technologies du langage et de la parole \cite{ch2ref5}. 
+    
+    \par L'apprentissage en profondeur est devenu aujourd'hui le composant central essentiel dans l'utilisation du NLP dans les applications. de par la convergence des technologies telles la traduction, le traitement de texte ou encore l'activation, qui on besoin de traiter une énorme quantité de données \cite{ch2ref5}.
+    
+        \subsubsection{NLP Classique}
+        \par Autre fois, le langage était divisé en formes grammaticales, à l'aide d'algorithmes complexes, c.-à-d. le traitement du langage naturel traitait des données statistiques comme dans la (FIGURE~\ref{fig:fig6ch2}), avec comme entrée des phrases, des discours etc.. \cite{ch2ref5}. 
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre2/nlpclassique.png}
+        	\end{center}
+        	\caption {NLP Classique}
+        	\label{fig:fig6ch2}
+        \end{figure}     
+        
+        \subsubsection{Deep learning avec NLP}
+        \par Avec l'avènement du deep learning, le traitement du langage naturel prend un nouveau soufle, c.à-d. le deep learning effectue les mêmes exercices qu'avant, car les réseaux neuronaux se montrent très efficaces et ont été appliqués avec succès dans toutes les tâches de traitement automatique des langues (TAL) \cite{ch2ref5}.  
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre2/nlpdeeplearning.png}
+        	\end{center}
+        	\caption {NLP avec Deep learning}
+        	\label{fig:fig7ch2}
+        \end{figure} 
+        \subsubsection{Modèles de NLP}
+        \par Si le NPL existe depuis longtemps, avec l'avennement du deep learning les progrès récemment réalisés par les géants du numérique sont considérables. Voici quelques modèles à la pointe : \cite{ch2ref11}
+        
+            \begin{itemize}[label=•] 
+            \setlength{\itemsep}{5pt}
+                \item les modèles BERT\cite{ch2bert} et ALBERT de Google AI qui servent en quelque sorte de référence pour les performances ;
+                \item les modèles dérivés et améliorés comme RoBERTa (Facebook), DeBERTa (Microsoft), DistilBERT (Hugging Face \cite{transformer}) ;
+                \item les modèles alternatifs comme GPT-2 et GPT-3 (OpenAI), XLNet (Université Carnegie Mellon), UniLM (Microsoft).
+            \end{itemize}
+        
+    \subsection{Extraction des représentations textuelles}
+    \par L'extraction de représentation de texte est une méthode d'extraction de vecteurs de représentation d'objets en langage naturel tels que des mots, des phrases et des documents à l'aide de réseaux de neurones profonds. Des chercheurs ont proposé un modèle de langage probabiliste neuronal, qui est le premier à appliquer des représentations distribuées contemporaines aux modèles de langage statistiques. 
+    
+    \par D'autres recherches\cite{ch2ref18} ont étendu les modèles au niveau du document. ELMo\cite{ch2ref19} a trouvé une manière différente d'intégrer des mots. Ils ont extrait des caractéristiques contextuelles d'un modèle de langage de gauche à droite et d'un modèle de langage de droite à gauche. La représentation contextuelle est une concaténation des représentations extraites par les deux modèles. Le modèle a surpassé de nombreux modèles traditionnels dans plusieurs benchmarks.    
+    
+    
+    \subsection{BERT }
+    \par Dans cette partie nous allons découvrire BERT et sont fonctionnement.
+        \subsubsection{Histoire}
+        \par 2018 a été une année décisive en NLP. L’apprentissage par transfert, en particulier des modèles tels que ELMO d’Allen AI, Open-GPT d’OpenAI et BERT de Google, a permis aux chercheurs de briser plusieurs benchmarks avec un réglage minimal spécifique à la tâche et a fourni au reste de la communauté NLP des modèles préformés qui pourraient facilement (avec moins de données et moins de temps de calcul) être affinés et mis en œuvre pour produire des résultats de pointe. Malheureusement, pour beaucoup de débutants dans NLP et même pour certains praticiens expérimentés, la théorie et l’application pratique de ces modèles puissants ne sont toujours pas bien comprises \cite{ch2ref20}.
+        
+    
+        \subsubsection{Définition }
+        \par BERT signifie \textbf{B}idirectional \textbf{E}ncoder \textbf{R}epresentations from \textbf{T}ransformers, Il est conçu par Google. C'est un modèle de représentation de textes écrit en langage naturel. La représentation faite par BERT a la particularité d’être contextuelle. C’est-à-dire qu’un mot n’est pas représenté de façon statique comme dans un embedding classique mais en fonction du sens du mot dans le contexte du texte. Par exemple, le mot « baguette » aura des représentations différentes dans « la baguette du magicien » et « la baguette du boulanger ». En plus, le contexte de BERT est bidirectionel, c’est-à-dire que la représentation d’un mot fait intervenir à la fois les mots qui le précèdent et les mots qui le suivent dans une phrase \cite{ch2ref21,ch2ref20,ch2ref16}.
+        
+        \par Le principe d’utilisation de BERT est tout simple : Il est « déjà » pré-entraîné sur une grande quantité de données, on le modifie pour une tâche précise puis on le (re)entraîne avec nos propres données. La modification dont il est question ici consiste en général à rajouter un réseau de neurones à la sortie de BERT. Cela s’appelle : le fine-tuning \cite{ch2bert,ch2ref21,ch2ref16}.
+        
+        \subsubsection{Fonctionnement de BERT }
+        \par Regardons de plus près BERT et comprenons pourquoi c’est une méthode si efficace pour modéliser le langage. Nous avons déjà vu ce que BERT peut faire plus tôt, mais comment le fait-il? Nous répondrons à cette question pertinente dans cette section. \cite{ch2ref16}
+            
+            \begin{enumerate}
+            \setlength{\itemsep}{5pt}
+                \item \textbf{L’architecture de BERT : }
+                \par L'architecture BERT (Figure~\ref{fig:bert}) s’appuie sur Transformer. BERT n’est rien d’autre qu’une superposition d’encoders. Nous avons actuellement deux variantes disponibles :
+                
+                \begin{itemize}[label=•] 
+                \setlength{\itemsep}{5pt}
+                    \item Base BERT : 12 couches (blocs transformateurs), 768 masquées, 12 têtes d’attention et 110 millions de paramètres
+                    
+                    \item BERT Large : 24 couches (blocs transformateurs), 1024 masquées, 16 têtes d’attention et 340 millions de paramètres
+                \end{itemize}
+                
+                \begin{figure}[H]
+                	\begin{center}
+                		\includegraphics[width=0.7\textwidth]{figures/chapitre2/archibert.png}
+                	\end{center}
+                	\caption {Architecture BERT}
+                	\label{fig:bert}
+                \end{figure}       
+                
+                \par La version représentée (Figure~\ref{fig:bert}) est la version dite « Base » de BERT. Elle est constituée de 12 encoders.et la version plus grande dite « Large » qui a 24 encodeurs comme le représente la figure. Évidemment la version large est plus performante mais plus gourmande en ressource machine \cite{ch2ref21,ch2ref20}.\\
+                
+                \begin{figure}[H]
+                	\begin{center}
+                    	\includegraphics[width=0.7\textwidth]{figures/chapitre2/archi_bert.png}
+                	\end{center}
+                	\caption {BERT Base}
+                	\label{fig:bertarchi}
+                \end{figure} 
+                
+                Le modèle a 512 entrées voir figure~\ref{fig:bertarchi} qui correspondent chacune à un token. La première entrée correspond à un token spécial le “[CLS]” pour “classification” et qui permet d’utiliser BERT pour une tâche de classification de texte. Il a également 512 sorties de taille 768 chacune (1024 pour la version Base). Le premier vecteur correspond au vecteur de classification. La sortie de chacun des 12 encodeurs peut être considérée comme une représentation vectorielle de la séquence passée en entrée. La pertinance de cette représentation est assurée par le mécanisme d‘attention mis en œuvre par les encodeurs \cite{ch2ref21,ch2ref20}. \\
+                
+                \par Pendant la pré-formation, le modèle est entraîné sur un grand jeu de données pour extraire des modèles. Il s’agit généralement d’une tâche d’apprentissage non supervisée où le modèle est entraîné sur un ensemble de données non étiqueté comme les données d’un grand corpus comme Wikipédia.
+                
+                Lors du réglage fin, le modèle est formé pour des tâches en aval telles que la classification, la génération de texte, la traduction linguistique, la réponse aux questions, etc. Essentiellement, vous pouvez télécharger un modèle pré-entraîné, puis Transférer-apprendre le modèle sur vos données.
+                
+                %\par BERT utilise deux paradigmes de formation : Pre-training et Fine-tuning.
+
+            
+                \item \textbf{Prétraitement du texte : } 
+                \begin{figure}[H]
+                    \begin{center}
+                		\includegraphics[width=\textwidth]{figures/chapitre2/bert_embedding.png}
+                	\end{center}
+                	\caption {Ensemble de règles pour représenter le texte d’entréee du modèle BERT\cite{ch2bert} }
+                	\label{fig:bert_emb}
+                \end{figure} 
+                
+                \par Les développeurs derrière BERT ont ajouté un ensemble spécifique de règles pour représenter le texte d’entrée du modèle. Beaucoup d’entre eux sont des choix de conception créatifs qui rendent le modèle encore meilleur (voir figure~\ref{fig:bert_emb}.
+                Pour commencer, chaque intégration d’entrée est une combinaison de 3 intégrations : \cite{ch2ref22}
+                
+                    \begin{enumerate}
+                        
+                        \item \textbf{Intégration de position:} BERT apprend et utilise des intégrations positionnelles pour exprimer la position des mots dans une phrase. Ceux-ci sont ajoutés pour surmonter la limitation de Transformer qui, contrairement à un RNN, n’est pas capable de capturer des informations de « séquence » ou « d'ordre »
+                        
+                        \item \textbf{Intégrations de segments:} BERT peut également prendre des paires de phrases comme entrées pour les tâches (Question-Réponse). C’est pourquoi il apprend une intégration unique pour la première et la deuxième phrase afin d’aider le modèle à les distinguer. Dans l’exemple ci-dessus, tous les jetons marqués comme EA appartiennent à la phrase A (et de même pour EB)
+        
+                        \item \textbf{Token Embeddings:} Ce sont les intégrations apprises pour le token spécifique à partir du vocabulaire de token WordPiece
+                        
+                    \end{enumerate}
+                    
+                \par Pour un jeton donné, sa représentation d’entrée est construite en additionnant les intégrations de jeton, de segment et de position correspondantes. Un schéma d’intégration aussi complet contient beaucoup d’informations utiles pour le modèle. Ces combinaisons d’étapes de prétraitement rendent BERT si polyvalent. Cela implique que sans apporter de changement majeur à l’architecture du modèle, nous pouvons facilement l’entraîner sur plusieurs types de tâches NLP \cite{ch2ref21,ch2ref22}.
+                    
+        \end{enumerate}
+    
+    
+    
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% RS & DL %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+\section{Sytèmes de Recommandation utilisant le Deep Learning }
+
+\par Les RS sont utilisé pour améliorer l'experience utilisateur et promouvoir les services et vente pour de nombre sites web et application mobiles en ligne, par exemple 80\% des films regardés sur le web (netflix etc..) sont recommandés, et 60\% des vidéos aussi sont recommandés sur youtube. De nombreuse entreprises ont recours à l'apprentissage en profondeur pour améliorer la qualité de leurs recommandations \cite{ch2ref2}.
+
+    \subsection{Pourquoi le deep learning pour la recommandation }
+    Voici les 4 points forts des systèmes de recommandation basés sur l'apprentissage profond par rapport à ceux des approches de filtrage traditionnelles basées sur le contenu et collaboratif : \cite{ch2ref23}
+    
+        \begin{itemize}[label=•] 
+        \setlength{\itemsep}{5pt}
+        
+        \item Le Deep Learning peut modéliser les interactions non linéaires dans les données avec des activations non linéaires telles que ReLU, Sigmoid, Softmax… Cette propriété permet de capturer les modèles d'interaction utilisateur-élément complexes. 
+        Les méthodes conventionnelles telles que la factorisation matricielle et les machines de factorisation sont essentiellement des modèles linéaires. Cette hypothèse linéaire, qui sert de base à de nombreux recommandeurs traditionnels, est simplifiée à l'extrême et limitera considérablement leur expressivité de modélisation. 
+        Il est bien établi que les réseaux de neurones sont capables d'approximer n'importe quelle fonction continue avec une précision arbitraire en faisant varier les choix d'activation et les combinaisons. Cette propriété permet de gérer des modèles d'interaction complexes et de refléter précisément les préférences de l'utilisateur.
+        
+        \item L'apprentissage en profondeur peut apprendre efficacement les facteurs explicatifs sous-jacents et les représentations utiles à partir des données d'entrée. En général, une grande quantité d'informations descriptives sur les éléments et les utilisateurs est disponible dans les applications du monde réel. L'utilisation de ces informations fournit un moyen de faire progresser notre compréhension des articles et des utilisateurs, résultant ainsi en un meilleur recommandeur. 
+        En tant que tel, il est naturel d'appliquer des réseaux de neurones profonds à l'apprentissage de la représentation dans les modèles de recommandation. Les avantages de l'utilisation de réseaux de neurones profonds pour aider à l'apprentissage de la représentation sont de deux ordres: (1) cela réduit les efforts de conception de fonctionnalités artisanales; et (2) il permet aux modèles de recommandation d'inclure des informations de contenu hétérogènes telles que du texte, des images, de l'audio et même de la vidéo.
+        
+        \item L'apprentissage en profondeur est puissant pour les tâches de modélisation séquentielles. Dans des tâches telles que la traduction automatique, la compréhension du langage naturel, la reconnaissance vocale, etc., les RNN et les CNN jouent un rôle essentiel. Ils sont largement applicables et flexibles dans l'extraction de la structure séquentielle des données. La modélisation des signaux séquentiels est un sujet important pour l'exploration de la dynamique temporelle du comportement des utilisateurs et de l'évolution des éléments. Par exemple, la prédiction de l'élément suivant / panier et les recommandations basées sur la session sont des applications typiques. En tant que tels, les réseaux de neurones profonds deviennent un ajustement parfait pour cette tâche d'exploration de modèles séquentielle.
+        
+        \item L'apprentissage profond possède une grande flexibilité. Il existe de nos jours de nombreux frameworks d'apprentissage en profondeur populaires, notamment Pytorch, TensorFlow, Keras, Caffe, MXnet, DeepLearning4j, Theano… Ces outils sont développés de manière modulaire et bénéficient d'un support communautaire / professionnel actif. La bonne modularisation rend le développement et l'ingénierie beaucoup plus efficaces. Par exemple, il est facile de combiner différentes structures neuronales pour formuler de puissants modèles hybrides ou de remplacer un module par d'autres. Ainsi, nous pourrions facilement construire des modèles de recommandation hybrides et composites pour capturer simultanément différentes caractéristiques et facteurs.
+    
+        \end{itemize}
+
+    \subsection{Sytèmes de Recommandation contextuelle utilisant deep learning }
+    \par Avec la proposition de réseau de citations neuronales\cite{ch2ref16}, une approche hybride qui utilise à la fois des informations contextuelles et des informations d'auteur basées sur des graphes, les méthodes hybrides sont progressivement explorées par un nombre croissant de chercheurs. Ils ont proposé un modèle basé sur LSTM pour un système de recommandation de citation personnalisé, qui utilise les autres articles de l'auteur pour apprendre les intégrations personnelles de l'auteur pour les recommandations. ou encore \cite{ch1ref8} qui ont proposé le modèle BERT-GCN, qui utilise l'intégration contextuelle extraite par BERT\cite{ch2bert} et l'intégration de graphe de citation extraite par VGAE pour faire des recommandations. 
+    
+    \par Enfin, les méthodes existantes nécessitent de nombreuses informations telles que les informations sur l'auteur en tant que connaissances préalables, ce qui est assez peu pratique pour toute personne à utiliser dans des contextes réels. Les recherches actuelles ont exploré plus en profondeur la recommandation personnelle, sans remarquer que nous pouvons améliorer la recommandation uniquement en fonction du contexte de recherche \cite{ch1ref8}.
+    
+    
+\section{Conclusion}
+\par L'apprentissage profond est le domaine le plus émergeant de l'apprentissage automatique et de l'IA en général, il a fait exploser les contributions dans la recherche et ça, dans beaucoup de secteur professionnel et universitaire. Grace à cela les limites des méthodes dites traditionnelles c'est vue révolutionner en permettant de rendre les systèmes moins complexes mais surtout plus rapides.
+
+
+\par Le Deep Learning a été jumelé au NLP dans plusieurs domaines de recherche tel que l'extraction textuelle des doccuments et aussi aux systèmes de recommandation, ce qui est très prometteur et constitue un succès. 
+
+\par Dans ce chapitre nous avons défini l'apprentissage profond, nous avons aussi vu la différence entre le deep learning et le machine learning, sa popularité, les domaines d'application ainsi que ses points forts et points faibles par la suite nous avons abordé le fonctionnement de ces réseaux de neurones et pour finir nous avons vu quelques modèles de deep learning.
+\par Dans le même registre nous avons découvert le traitement du langage naturel, sa définition et sont domaine d'application ainsi que le changement apporté dans les NLP avec la venue du deep learning, son utilité dans l'extraction de contenu textuelle de doccument, enfin nous avons découvert BERT son histoire, sa définition mais surtout son fonctionnement.
+
+\par Nous concluons ce chapitre avec les systèmes de recommandation utilisant le deep learning, en répondant aussi à la question, pourquoi le deep learning pour la recommandation avant de finir avec les Sytèmes de Recommandation contextuelle utilisant le deep learning.

@@ -1,0 +1,143 @@
+\documentclass[ a4paper, 12pt]{report}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc} 
+\usepackage[cyr]{aeguill}
+\usepackage{fancyhdr}%\usepackage{fancyheadings}
+\usepackage[Glenn]{fncychap}%chapitre deco
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{graphicx}
+%\graphicspath{figs/ }
+\usepackage{pdfpages}
+\usepackage{anysize}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tabto}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{lipsum} 
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    citecolor=black,
+    pdftitle={Recommandation d’articles scientifiques basée sur les citations et leurs contextes},
+    pdfauthor={SAIDANI Ayoub Youcef},
+    pdfsubject={Thèse de master},
+}
+ 
+
+\marginsize{24mm}{20mm}{15mm}{15mm}
+\usepackage{fancyhdr}% entete
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3} %afficher les numéro des subsubsection
+
+\renewcommand{\headrulewidth } { 1.5pt } 
+
+
+\parindent=0 cm
+
+\renewcommand{\baselinestretch}{1.2}\small \normalsize 
+
+\begin{document}
+\includepdf[pages=-]{latex_pdf/.1.pagedegarde.pdf}
+
+\includepdf{latex_pdf/.2.remerciment.pdf}
+\includepdf{latex_pdf/.4.dedicace.pdf}
+
+\pagebreak
+
+\includepdf{latex_pdf/resume.pdf}
+\pagebreak
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\pagebreak
+\pagestyle{fancy}
+\rhead{\bfseries\leftmark}
+\lhead{}
+\renewcommand{\contentsname}{Sommaire} 
+\tableofcontents
+
+
+\renewcommand\listfigurename{Liste des Figures} 
+\listoffigures
+\listoftables
+%\renewcommand\listalgorithmname{Liste des Algorithmes} 
+%\listofalgorithms
+\include{stucture/.3.abreviation}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagebreak
+\pagestyle{fancy}
+\renewcommand{\headrulewidth } { 1.5pt } 
+\renewcommand{\footrulewidth } { 1pt }
+\rhead{\textbf{Introduction générale}}
+\lhead{}
+\cfoot{}
+\rfoot{Page \thepage}
+\setlength{\parskip}{0.5cm}
+%\textellipsis
+\include{1.introduction}
+
+\pagebreak
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{#1 }{}}
+
+\rhead{\bfseries\leftmark}
+\lhead{\bfseries\chaptername \thechapter}
+
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth } { 1.5pt } 
+\renewcommand{\footrulewidth } { 1pt }
+
+\include{chapitre/chapitre1}
+\include{chapitre/chapitre2}
+\include{chapitre/chapitre3}
+\include{chapitre/chapitre4}
+\pagebreak
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth } { 1.5pt } 
+\renewcommand{\footrulewidth } { 0pt }
+\rhead{\textbf{Conclusion générale}}
+\lhead{}
+\include{conclusion}
+
+\pagebreak
+\pagestyle{fancy}
+\renewcommand{\headrulewidth } { 1.5pt } 
+\renewcommand{\footrulewidth } { 1pt }
+\pagenumbering{Roman}
+\setcounter{page}{9}
+\rhead{\bfseries\leftmark}
+\lhead{}
+\cfoot{\thepage}
+\rfoot{}
+\bibliographystyle{unsrt}
+\bibliography{ ref }
+
+%\pagebreak
+%\includepdf{resume.pdf}
+\end{document}

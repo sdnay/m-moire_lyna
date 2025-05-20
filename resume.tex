@@ -1,0 +1,40 @@
+\documentclass[11pt,a4paper]{report}
+% Garder l'ordre des packages
+\usepackage{arabtex}
+\usepackage[utf8]{inputenc}
+%\usepackage[LFE,LAE]{fontenc}
+\usepackage[ french]{babel} % Pour adopter les règles de typographie Arabe
+ \thispagestyle{empty}
+\usepackage{anysize}
+\marginsize{24mm}{20mm}{20mm}{25mm}
+
+\parindent=0 cm
+\begin{document}
+    \hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+    \section*{Résumé}
+    \par Ces dernières années, la croissance du nombre d'articles scientifiques publiés est énorme, par conséquent, la recherche de références bibliographiques, lors de la rédaction d'un article scientifique, est devenue un processus qui prend du temps. Plusieurs approches ont été proposées pour aider les chercheurs à acquérir des articles scientifiques pertinents et utiles grâce à l'énorme quantité d'informations. De nombreux systèmes de recommandations (RS) sont utilisés pour aider les chercheurs, Bien que les méthodes classiques de RS ont obtenu des succès remarquables en fournissant des recommandations d'articles, cependant, elles souffrent encore de nombreux problèmes tels que le démarrage à froid et la rareté des données.\\
+    Dans cette éventualité notre solution s’est appuyée sur, la recommandation de citation contextuelle basée sur l'apprentissage en profondeur et le traitement du language naturel grâce à BERT, et l'appliquons à la tâche de recommandation de document contextuelle, obtenant d'excellents résultats.\\
+    Dans le cadre de ce travail nous utilisons  un ensemble de données (FullTextPeerRead) contenant des phrases de contexte pour les références citées et les documents papier et qui comprend environ 4898 articles et plus de 17000 enregistrements de citations structurées. Faisant de lui un ensemble de données bien organisé pour une recommandation d'articles tenant compte du contexte.\\
+    Enfin, nous proposons une plateforme/site web de recherche qui a été construite pour retourner les recommendations, et qui présente notre travail de manière plus intuitive.\\
+    \textbf{Mots clés:} Article Scientifique, Deep Learning, Système de Recommandation, Recommendation basé contenu, NLP, BERT.\\
+    
+    \hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+    
+    \section*{Abstract}
+    \par In recent years, the growth in the number of published scientific articles has been enormous, therefore, searching for bibliographic references, when writing a scientific article, has become a time-consuming process. Several approaches have been proposed to help researchers acquire relevant and useful scientific articles through the huge amount of information. Many recommending systems (RS) are used to help researchers, Although the classic methods of RS have had remarkable success in providing article recommendations, however, they still suffer from many problems such as cold starting and the scarcity of data.\\
+    In this eventuality our solution relied on, contextual citation recommendation based on deep learning and natural language processing through BERT, and apply it to the contextual document recommendation task, achieving excellent results. results.\\
+    For this work we use a dataset (FullTextPeerRead) containing context sentences for cited references and paper documents and which includes approximately 4898 articles and over 17000 structured citation records. Making it a well-organized dataset for context-aware article recommendation.\\
+    Finally, we offer a research platform / website which was built to return recommendations, and which presents our work in a more intuitive way.\\
+    
+    \textbf{Keywords:}  Scientific article, Deep Learning, Recommendation Systeme, Recommendation Context-based, NLP, BERT.
+    
+    \hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+    
+    
+    %\begin{otherlanguage}{arabic}
+        %\subsection*{ملخص}
+        
+        %\textbf{اللمات المفتاحي:}.\\
+        %\hbox{\raisebox{0em}{\vrule depth 0pt height 1pt width \textwidth}}
+    %\end{otherlanguage}
+\end{document}

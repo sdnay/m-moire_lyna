@@ -1,0 +1,384 @@
+\chapter{\textbf{Implémentation et évaluation des performance}}\label{chapitre4}
+
+\section{Introduction}
+\par Pour réussir à réaliser un projet ou résoudre un problème donné dans n'importe quel domaine, il nous faut un environnement de travail et des outils de travail adéquoits pour le bon déroulement du projet. Dans le domaine de l'informatique qui ne fait pas d'exeption à la régle on a besoin d'environnement  de travail, de trouver le language et la technologie/bibliothèque adéquoite et spécifique au problèmes que l'on souhaite résoudre. 
+
+\par Dans notre cas, nous avons choisi un language de programmation optimal et adéquoi pour notre problème et avec les technologies et bibliothèque qui vont nous aidées dans notre travail.
+
+\par Dans ce quatrième et dernier chapitre et après avoir terminé la conception, on va définir le language et les technologies/bibliothèques choisi, l'environnement de développement et de travail, et on va détailler l'implémentation concernant la création de notre modèle ainsi la recommandation d'articles, évaluation de notre modèle, et avant de finir nous avons créé une application web pour représenter notre résultat de recommandation, Enfin, nous allons finir par une conclusion sur ce chapitre.
+
+\section{Implémentation}
+\par 
+    \subsection{Technologies et bibliothèques utilisées}
+    \par
+    
+        \subsubsection{Python}
+        \par Python est un langage de programmation puissant et facile à apprendre. Il dispose de structures de données de haut niveau et permet une approche simple mais efficace de la programmation orientée objet. Parce que sa syntaxe est élégante, que son typage est dynamique et qu’il est interprété, Python est un langage idéal pour l’écriture de scripts et le développement rapide d’applications dans de nombreux domaines et sur la plupart des plateformes \cite{python}.
+        Python a été développé à la fin des années 80 par Guido Van Rossum, à ce jour il est à la version 3.9. 
+        
+        
+        Les raisons de ce choix, sont les suivantes:
+    	\begin{itemize}[label=•]
+    	\setlength{\itemsep}{5pt}
+            \item Le plus approprié avec ces technologies et bibliothèques dédiée au DL comme (Pytorch, Tensorflow, Mateplotlib,numpy sckitl etc..)
+            \item L'énorment communauté l'utilisant, notamment dans le DL. ce qui facilite la résolution de problème.
+            \item La simplicité, compréhensivité et productivité que permet le langage. 
+        \end{itemize}
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.25\textwidth]{figures/chapitre4/python.png}
+        	\end{center}
+        	\caption {Python}
+        	\label{fig:py}
+        \end{figure} 
+        
+        \subsubsection{Anaconda}
+        \par Anaconda a été construit par des scientifiques des données, pour des scientifiques des données. Plus de 20 millions de personnes utilisent notre technologie pour résoudre les problèmes les plus difficiles \cite{anaconda}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/anaconda.png}
+        	\end{center}
+        	\caption {Anaconda}
+        	\label{fig:anaconda}
+        \end{figure} 
+        
+        \subsubsection{Pytorch }
+        \par PyTorch est une bibliothèque logicielle Python open source d'apprentissage machine qui s'appuie sur Torch développée par Facebook \cite{pytorch}.
+        \par PyTorch permet d'effectuer les calculs tensoriels nécessaires notamment pour l'apprentissage profond (deep learning). Ces calculs sont optimisés et effectués soit par le processeur (CPU) soit, lorsque c'est possible, par un processeur graphique (GPU) supportant CUDA. Il est issu des équipes de recherche de Facebook, et avant cela de Ronan Collobert dans l'équipe de Samy Bengio10 à l'IDIAP \cite{pytorch}.
+        \par PyTorch est dérivé d'un logiciel antérieur, Torch, qui s'utilisait avec le langage Lua. PyTorch est indépendant de Lua et se programme en Python \cite{pytorch}.
+         
+        
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/pytorch.png}
+        	\end{center}
+        	\caption {Pytorch}
+        	\label{fig:pytorch}
+        \end{figure}     
+        
+        \subsubsection{Scikit-learn}
+        \par Scikit-learn est une bibliothèque clé pour le language de programmation Python qui est généralement utilisé dans les projets d’apprentissage automatique. Scikit-learn est axé sur les outils d’apprentissage automatique, y compris les algorithmes mathématiques, statistiques et à usage général qui constituent la base de nombreuses technologies d’apprentissage automatique. En tant qu’outil gratuit, Scikit-learn est extrêmement important dans de nombreux types de développement d’algorithmes pour l’apprentissage automatique et les technologies connexes \cite{scikit}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/sklearn.png}
+        	\end{center}
+        	\caption {Scikit-Learn}
+        	\label{fig:scikit}
+        \end{figure}  
+        
+        \subsubsection{Pandas}
+        \par Pandas est un outil rapide, puissant, flexible et facile à utiliser pour l’analyse et la manipulation des données open source, construit en plus du language de programmation Python \cite{pandas}.
+
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/pandas.png}
+        	\end{center}
+        	\caption {Pandas}
+        	\label{fig:pandas}
+        \end{figure}  
+        
+        \subsubsection{Numpy}
+        \par Numpy est le package fondamental pour le calcul scientifique en Python. Il s’agit d’une bibliothèque Python qui fournit un objet tableau multidimensionnel, divers objets dérivés (tels que des tableaux et matrices masqués) et un assortiment de routines pour des opérations rapides sur des tableaux, y compris mathématiques, logiques, manipulation de forme, tri, sélection, E / S, transformées de Fourier discrètes, algèbre linéaire de base, opérations statistiques de base, simulation aléatoire et bien plus encore \cite{numpy}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/numpy.png}
+        	\end{center}
+        	\caption {Numpy}
+        	\label{fig:numpy}
+        \end{figure} 
+        
+        \subsubsection{Matplotlib}
+        \par Matplotlib est une bibliothèque complète pour créer des visualisations statiques, animées et interactives dans Python. Matplotlib rend les choses faciles et difficiles possible \cite{matplotlib}.
+
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/matplotlib.png}
+        	\end{center}
+        	\caption {Matplotlib}
+        	\label{fig:matplotlib}
+        \end{figure}  
+        
+        \subsubsection{Visual Studio Code}
+        \par Visual Studio Code est un éditeur de code open-source développé par Microsoft supportant un trèes grand nombre de langages grâce à des extensions. Il supporte l’auto complétion, la coloration syntaxique, le débogage, et les commandes git \cite{vscode}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.25\textwidth]{figures/chapitre4/vscode.png}
+        	\end{center}
+        	\caption {Visual Studio Code}
+        	\label{fig:vscode}
+        \end{figure}          
+
+        \subsubsection{Django }
+        \par Django est un framework Python de haut niveau, permettant un développement rapide de sites internet, sécurisés, et maintenables. Créé par des développeurs expérimentés, Django prend en charge la plupart des tracas du développement web, Il est gratuit, open source, a une communauté active, une bonne documentation \cite{django}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/django.png}
+        	\end{center}
+        	\caption {Django}
+        	\label{fig:django}
+        \end{figure}         
+        
+        \subsubsection{Google Colab}
+        \par Google Colab  ou Colaboratory est un service cloud, offert par Google (gratuit), basé sur Jupyter Notebook et destiné à la formation et à la recherche dans l’apprentissage automatique. Cette plateforme permet d’entraîner des modèles de Machine Learning directement dans le cloud. Sans donc avoir besoin d’installer quoi que ce soit sur notre ordinateur à l’exception d’un navigateur. Cool, n’est ce pas ? Avant de présenter ce magnifique service, nous rappellerons ce qu’est un Jupyter Notebook \cite{ggcolabjptr}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.35\textwidth]{figures/chapitre4/co.png}
+        	\end{center}
+        	\caption {Google Colab}
+        	\label{fig:ggcolab}
+        \end{figure}  
+        
+        \subsubsection{Jupyter Notebook}
+        \par Jupyter Notebook est une application Web Open Source permettant de créer et de partager des documents contenant du code (exécutable directement dans le document), des équations, des images et du texte. Avec cette application il est possible de faire du traitement de données, de la modélisation statistique, de la visualisation de données, du Machine Learning, etc. Elle est disponible par défaut dans la distribution Anaconda \cite{ggcolabjptr}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.45\textwidth]{figures/chapitre4/jptr.png}
+        	\end{center}
+        	\caption {Jupyter}
+        	\label{fig:jptr}
+        \end{figure}  
+        
+        \subsubsection{Transformers}
+        \par Transformers (anciennement connu sous le nom de pytorch-transformers et pytorch-pretrained-bert)fournit des architectures à usage général (BERT, GPT-2, RoBERTa, XLM, DistilBert, XLNet...) pour la compréhension du langage naturel (NLU) et la génération de langage naturel (NLG) avec plus de 32 modèles préentraînés dans plus de 100 langues et une interopérabilité profonde entre Jax, PyTorch et TensorFlow \cite{transformer}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/TransformaterHF.png}
+        	\end{center}
+        	\caption {Transformers | huggingface.co}
+        	\label{fig:transformerhf}
+        \end{figure}
+        
+        
+        \subsubsection{Bootstrap Studio }
+        \par Bootstrap Studio est une application de bureau puissante pour la conception et le prototypage de sites Web. Il est livré avec un grand nombre de composants intégrés, que vous pouvez glisser et déposer pour assembler des pages Web réactives. L’application est construite sur le dessus du cadre Bootstrap extrêmement populaire, et exporte html propre et sémantique \cite{bootstrpstudio}.
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.25\textwidth]{figures/chapitre4/bootstrapestudio.png}
+        	\end{center}
+        	\caption {BootStrap Studio}
+        	\label{fig:bootstrpstudio}
+        \end{figure} 
+    
+    \subsection{Environnement de travail} 
+    \par Dans cette partie, nous allons mettre en évidence l'envirenement de travail avec lequel nous allons mener à bien notre projet
+    
+        \subsubsection{Environnement de tests}
+        \par Voici notre environnement de tests qui se caractèrise avec :
+        
+        \textbf{Machine Personnel} :
+        \begin{itemize}[label=•] 
+        \setlength{\itemsep}{5pt}
+            \item  \textbf{CPU} : Intel® Core™ i7-7820HQ CPU @ 2.90GHz
+            \item  \textbf{GPU} : Intel® HD Graphics 630 | NVIDIA Quadro M2200 
+            \item  \textbf{RAM} : 20.00 Go
+            \item  \textbf{OS} : Windows 11 Professionnel 64bit
+            \item  \textbf{STOCKAGE} : NVMe SAMSUNG 500 Go.
+        \end{itemize}
+        
+        \textbf{Machine Virtuelle} :
+        \begin{itemize}[label=•] 
+        \setlength{\itemsep}{5pt}
+            \item  \textbf{CPU} : Intel® Core™ i7-7820HQ CPU @ 2.90GHz
+            \item  \textbf{GPU} : NVIDIA Quadro M2200 
+            \item  \textbf{RAM} : 8.00 Go
+            \item  \textbf{OS} : Ubuntu 20.04
+            \item  \textbf{STOCKAGE} : NVMe SAMSUNG 20 Go.
+        \end{itemize}
+        
+        \textbf{Google Colab} : 
+        \begin{itemize}[label=•]
+            \setlength{\itemsep}{5pt}
+            \item  \textbf{CPU} : Intel(R) Xeon(R) CPU @ 2.20GHz
+            \item  \textbf{GPU} : Colab incluent souvent les modèles K80, T4, P4 et P100 de Nvidia. 
+            \item  \textbf{RAM} : 14.00 Go
+            \item  \textbf{OS} : Ubuntu 20.04
+            \item  \textbf{STOCKAGE} : 100 Go Libre \& Google Drive.
+        \end{itemize}
+    
+        \subsubsection{Environnement virtuel sur anaconda }
+        
+        \par Le principe est simple, pour chaque projet qu'on commence, on lui dédié un environnement isolé avec ses propres librairies et dépendances (pytorch, matplotlib etc ...). Comme nous travaillons avec des projets en Python pur, pour la gestion des packages on travaillera avec pip et on délèguera la gestion de l’environnement à Conda (Anacoda) selon le principe suivant :
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre4/environnements-pip-anaconda.png}
+        	\end{center}
+        	\caption {Environnement pip avec anaconda}
+        	\label{fig:envcondapip}
+        \end{figure}  
+    
+        
+        \par Pour créer un environnement sur anaconda, on choisie la version de python et un nom à cette environnement pour le différencier des autres projets. on utilise la commande :
+        \begin{itemize}[label=|]
+        \setlength{\itemsep}{5pt}
+            \item \textbf{\large{conda create -n torch$\_$env python=3.9}}\\
+        \end{itemize}
+        
+        \par On active l'environnement qu'on z créé pour pouvoir y installer nos dépendances :
+        \begin{itemize}[label=|]
+        \setlength{\itemsep}{5pt}
+            \item \textbf{\large{conda activate torch$\_$env}}\\
+        \end{itemize}
+        \par On aura ça :
+        
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre4/anaconda_activate.png}
+        	\end{center}
+        	\caption {Activation environnement Anaconda}
+        	\label{fig:activenvconda}
+        \end{figure}  
+        
+        \par pour l'instalation d'une librérie et package, il suffit de faire : 
+        \begin{itemize}[label=|]
+        \setlength{\itemsep}{5pt}
+            \item \textbf{\large{pip install pytorch}} ou ;
+            \item \textbf{\large{conda install pytorch}}.\\
+        \end{itemize}
+        
+        \par A partir de là, toute commande exécutée dans ce terminal fera uniquement appel à la version de Python associée à l’environnement virtuel. Votre code aura aussi accès à chaque librairie externe exclusivement installée dans cet environnement.En dehors de l’environnement 
+        \par Enfin, quand on a fini, on n'oublit pas de fermer notre espace de travail :
+        \begin{itemize}[label=|]
+        \setlength{\itemsep}{5pt}
+            \item \textbf{\large{conda deactivate}}
+        \end{itemize}
+        
+        \subsubsection{Architecture du projet }
+        \par Voici l'architecture de l'ensemble du projet, qui est organisé comme on peut le voir dans la figure~\ref{fig:projet}. où on à des fichier train, evalperf, recommandation qui on la tâche d'entrainer, d'évaluer et de recommander, également le fichier dataset qui sert à modifier et récupérer nos données qui sont entreposés dans le dossier \textbf{data}. On a un dossier \textbf{configuration} qui contient des fichiers de type yaml qui contienent la config pour entrainé et évaluer notre modèle qui quand à lui se trouve dans un fichier \textbf{model}, et aussi pour faire des recommandations. enfin, le dossier \textbf{utils} qui contient les utilitaires tels que les fonctions de calcul pour l'évaluation ou le fichier pour prétraiter les données.
+        
+
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=0.5\textwidth]{figures/chapitre4/projet.png}
+        	\end{center}
+        	\caption {Architecture et organisation du projet }
+        	\label{fig:projet}
+        \end{figure}  
+        
+        
+\section{Entrainement du modèle}
+\par Une fois notre environnement de travail mis en place, nous executons la tache d'entrainement de notre modèle.
+
+    
+    
+\par Une fois les données construite et prétraité nous allons créer notre model qui est basé sur bert comme décrit dans le chapitre 3.
+     
+    
+    
+\section{Èvaluation}
+\par À ce stade, notre modèle a été formé. Des expériences ont été menées sur modèle, pour voir les performances du modèle dans la recommandation de citation contextuelle. 
+
+Pour l'évaluation expérimentale, nous utilisons MAP, MRR et Recall Top@K, qui sont des métriques générales pour la recherche d'informations. Le MAP mesure la précision moyenne reflétant la position de rang par rapport à la liste de récupération. Cet indicateur est basé sur la position des valeurs d'étiquette correspondantes pour la liste de recommandations K, et nous avons mesuré l'indicateur avec $K = 10$.
+
+L'indicateur MRR est défini comme identifiant l'emplacement de la première occurrence des étiquettes réelles dans la liste de recommandations. Enfin, Recall Top@K est défni comme un indicateur du taux de réussite réel des étiquettes dans une liste de recommandations Top@K. Pour cela, nous évaluons l'indice de rappel par $K = [ 5, 10, 30, 50 ]$. 
+
+    \subsection{Èvaluation modèle basé sur bert large cased}
+    \par On rappelle que BERT Large c'est : 24 couches (blocs transformateurs), 1024 masquées, 16 têtes d’attention et 340 millions de paramètres
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=\textwidth]{figures/chapitre4/evalperfbertbasecased1.png}
+    	\end{center}
+    	\caption {Entrainement modèle basé sur bert large }
+    	\label{fig:large1}
+    \end{figure}  
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=\textwidth]{figures/chapitre4/evalperfbertbasecased2.png}
+    	\end{center}
+    	\caption {Entrainement modèle basé sur bert large suite}
+    	\label{fig:large2}
+    \end{figure}  
+
+
+    \subsection{Èvaluation modèle basé sur bert base cased}
+    \par On rappelle que BERT Base c'est : 12 couches (blocs transformateurs), 768 masquées, 12 têtes d’attention et 110 millions de paramètres
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=\textwidth]{figures/chapitre4/evalperfbertlargecased1.png}
+    	\end{center}
+    	\caption {Entrainement modèle basé sur bert base }
+    	\label{fig:base1}
+    \end{figure}  
+    
+    \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=\textwidth]{figures/chapitre4/evalperfbertlargecased2.png}
+    	\end{center}
+    	\caption {Entrainement modèle basé sur bert base suite}
+    	\label{fig:base2}
+    \end{figure} 
+    
+
+\par Voici un tableau~\ref{table:metrics} qui résume les résultat : 
+\begin{table}[H]
+    \centering
+        \begin{tabular}{ | c | c | c | c | c | c | c | } 
+    \hline
+    \multicolumn{7}{|c|}{ Metrics } \\
+    \hline\hline
+    Model & MRR & mAP & Rec@5 & Rec@10 & Rec@30 & Rec@50 \\
+    \hline
+    Notre Model Bert base  case & 0.175563 & 0.342857 & 0.494505 & 0.494505  & 0.764835 & 0.922527 \\
+    \hline
+    Notre Model Bert large case & 0.115022 & 0.024657 & 0.175275 & 0.397253 & 0.641758  & 0.971429  \\
+    \hline
+    \end{tabular}
+    \caption{Description des attribus du dataset}
+    \label{table:metrics}
+\end{table}
+
+
+\section{Integration de la recommandation dans une application web}
+\par Nous avons intégré notre recommandation d'articles scientifiques basée sur le contexte des citations dans une application web qui simule un moteur/plateforme de recherche, nous avons utilisé Boostrap studio pour la création des pages web (frontend) et le framework django pour le backend.
+
+\par Nous allons préesenter le contenu de notre modèste application qui est simple et se compose d'une barre de recherche et l'affichage des articles recommandés. comme peut le montrer les figures~(\ref{fig:web1} \ref{fig:web2}, \ref{fig:web3}) comme suite ;
+
+\par tous d'abord on commence par chercher quelque chose comme "deep learning" etc.. (mots ou phrase) : 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures/chapitre4/web1.png}
+	\end{center}
+	\caption {Application Web | Recherche }
+	\label{fig:web1}
+\end{figure}  
+
+\par La recommendations d'articles scientifiques, basée sur notre modèle de recommandation de citation sensible au contexte. Notre plateforme de recherche, dans notre cas, c'est un Top-10 de recommendations qui a été proposé comme des liens : 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures/chapitre4/web2.png}
+	\end{center}
+	\caption {Application Web | Les résultats de la recommandation }
+	\label{fig:web2}
+\end{figure}
+
+\par une fois que l'on clique sur le titre des article recommendés, une fenetre s'affiche contenant toutes les informations lié à notre article tel qu'il est ilustré dans la capture d'écran : 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures/chapitre4/web3.png}
+	\end{center}
+	\caption {Application Web | Information sur l'article recommander  }
+	\label{fig:web3}
+\end{figure}  
+
+\section{Conclusion}
+\par Dans ce chapitre, nous avons abordé les différentes technologies utilisées pour la réalisation de ce projet de la création du modèle à l'application web utilisant django et bootstrap (Backend/Frontend). grace à python qui nous permet de faire moultes choses.
+
+\par Au cours de ce dernièr nous avons eu à créer notre envirennement de travail entre l'envirenement virtuel sur anaconda et les envirennement de tests de nos machines. On a reussi à créer un modèle et utilisé ces prédictions pour afficher des recommendations se basant sur le contexte grace à notamment la puissant de calcul que peut offrir Google Collaboratory\cite{ggcolabjptr} et nous avons capturé les moments où nos modèles s'entrainait car nous avons à titre de comparaison des performences utilisé Bert (base et large) pré-entrainé. enfin, finir par calculer les métriques des performences.
+

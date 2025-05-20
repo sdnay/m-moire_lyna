@@ -1,0 +1,197 @@
+\chapter{\textbf{Conception}}\label{chapitre3}
+
+\section{Introduction}
+\par Dans ce chapitre, nous allons présenter notre conception pour le développement d'un système permettant de faire des recommandations d'articles scientifiques sensibles au contexte des citations.
+
+Nous allons présenter les différentes étapes ou phases de notre conception, qui se dévisera en 4 phase, de la phase de constitution et acquisition de l'ensemble de donées à la dernière phase de recommandation d'articles scientifiques, en utilisant un model qui se base principalement basée sur BERT pour le traitement et prise en charge du context.
+
+\section{Les phases de la solution proposée}
+\par Dans cette section, nous allons montrer toutes les phases importantes pour la création d'un système de recommandation en deep learning.
+    
+    \subsection{Phase de constitution et acquisition de la donées }
+    \par Dans cette phase, nous allons voir tout ce qui concerne l'ensemble de données utilisé, procédés de création ainsi que sa source.  
+    
+        \subsubsection{Acquisition de l'ensemble de données PeerRead} Pour ce faire, ils ont utilisé arXiv Vanity \cite{arXiv} pour créer l'ensemble de données. ArXiv Vanity qui est un site qui convertit un fichier PDF basé sur latex en document HTML. ainsi que les informations du document de référence. Pour ce faire, ils ont analysé le latex en HTML via arXiv Vanity et utilisé une expression régulière pour reconnaître le symbole de citation dans le document. Ensuite, les phrases des deux côtés du symbole de citation ont été stockées dans une base de données avec des informations sur les articles de référence \ref{fig:fig2ch3}. Ils ont stocké les informations collectées avec les métadonnées existantes et les ont intégré dans un fichier csv, comme illustré (la Figure \ref{fig:fig1ch3})  \cite{ch1ref8, peerread, peerreadgit}.
+        
+        \begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=\textwidth]{figures/chapitre3/creatopnftprcsv.png}
+    	\end{center}
+    	\caption {Prétraitement des PDFs pour la création du jeu de données}
+    	\label{fig:fig1ch3}
+        \end{figure} 
+        
+            \subsubsection{L'ensemble de donnée FullTextPeer-Read} Est un ensembles de données qui a été construit pour la tâche de recommandation de citation contextuelle. FullTextPeer-Read qui est une extension de l'ensemble de données PeerRead. L'ensemble de données PeerRead contiennent des informations bibliométriques bien organisées, et fournit principalement des examens par les pairs des articles soumis dans des lieux de premier plan du domaine de l'intelligence artificielle, ainsi que des informations bibliométriques comme l'indique l'ilustration (la Figure \ref{fig:fig2ch3}). Étant donné que l'ensembles de données existant de la tâche manquent d'informations dans le contexte de citation, ils se concentre sur la collecte d'informations contextuelles avec des métadonnées. Par conséquent, l'ensembles de données PeerRead a été retraités pour créer l'ensemble de données FullTextPeer-Read\cite{ch1ref8, peerreadgit}.
+        
+            
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{||c | c||} 
+             \hline
+               & FullTextPeerRead \\ [0.5ex] 
+             \hline\hline
+             Nbr de papiers au total      & 4898      \\ 
+             Nbr de papiers de base       & 3761      \\
+             Nbr d'article cités          & 2478      \\
+             Nbr de contexte de citation  & 17247     \\
+             Article publié entre         & 2007-2017 \\ [1ex] 
+             \hline
+            \end{tabular}
+            \caption{Description de l'ensemble de données FullTextPeerRead. \cite{ch1ref8}}
+            \label{table:1}
+            \end{table}
+              
+            \subsubsection{Statique du jeu de données PeerRead }
+            \par La statique de l'ensemble de données comme relevé dans l'article, indique qu'ils ont construit comme il est indiquée dans le Tableau \ref{table:1}. Le nombre d'ensemble de données extraits était inférieur au nombre d'origine d'ensemble de données PeerRead, car ils devaient retirer du papier les fichiers PDF qui n'utilisaient pas de latex ou qui étaient très bruyants à cause de leur traitement avec arXiv Vanity \cite{arXiv}.
+            
+            \par Dans le Tableau~\ref{table:1}, Total "Nbr de papiers de base" est un article qui cite d'autres recherches comme peut le montrer la Figure \ref{fig:fig2ch3}. Ils ont eu des informations sur les métadonnées de l'article qui sont utilisées comme entrée pour la tâche de classification. "Nbr d'articles cités" est un article cité. De plus, ils ont extrait des unités de paragraphe des deux côtés du symbole de citation, et "Nbr de contexte de citation" signifie la somme du nombre de phrases qui sont dans le paragraphe extrait. De plus, "Nbr total d'articles" fait référence au nombre total d'articles couverts par l'article de base et l'article cité, à l'exclusion des doublons \cite{ch1ref8}.
+            
+            \par Donc nous utiliserons cette ensemble de données (FullTextPeerRead tab~\ref{table:1}) pour une tâche de recommandation de citations contextuelle qui comprend environ $4 898$ articles et plus de 17 000 enregistrements de citations structurées. L'ensemble de données de citations comprend une variété de métadonnées de citations et il est applicable à toutes les méthodes de recommandations de citations car il fournit toutes les informations pour décrire une citation dans le niveau de l'article.
+    
+            \begin{figure}[H]
+            	\begin{center}
+            		\includegraphics[width=0.85\textwidth]{figures/chapitre3/articlesrctrg.png}
+            	\end{center}
+            	\caption {Ilustration enregistrement de context, article source et article référence dans FullTextPeerRead}
+            	\label{fig:fig2ch3}
+            \end{figure} 
+            
+            \subsubsection{FullTextPeerRead contenu }
+            \par Pour chaque enregistrement de citation, nous fournissons les attributs répertoriés dans le Tableau~\ref{table:2} dans un format structuré dans notre ensemble de données.
+            
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{ | c | c | } 
+            \hline
+            \multicolumn{2}{|c|}{ FullTextPeerRead } \\
+            \hline
+            Attribut & Explication \\
+            \hline\hline
+            
+            right citated text  &   le contexte gauche avant la citation                \\
+            left citated text   &   le contexte droit après la citation                 \\ 
+            source id           &   l'id de l'article référence                            \\
+            source abstract     &   l'abstract de l'article référence                      \\
+            source author       &   l'auteur de l'article référence                        \\
+            source title        &   le titre de l'article référence                        \\
+            source venue        &   le lieu de l'article référence                         \\
+            source year         &   l'année de publication de l'article référence          \\
+            target id           &   l'id de l'article cible                                \\
+            target abstract     &   l'abstract de l'article cible                          \\
+            target author       &   l'auteur de l'article cible                            \\
+            target title        &   le titre de l'article cible                            \\ 
+            target venue        &   le lieu de l'article cible                             \\
+            target year         &   l'année de publication de l'article cible              \\ 
+            \hline
+            \end{tabular}
+            \caption{Description des attribu du dataset}
+            \label{table:2}
+            \end{table}
+        
+        \par Voici un exemple spécifique des enregistrements et du processus de collecte des enregistrements dans l'ensemble de données choisi comme le montre la figure~\ref{fig:fig2ch3}. Tout d'abord, ils choisissent un article dans l'ensemble de données, par exemple, « Data Recombination for Neural Semantic Parsing » \cite{ch3articlexmple}. Ensuite, nous trouvons l'emplacement de l'espace réservé de citation comme indiqué en vert sur la figure~\ref{fig:artexp}, et extrayons le contexte avant et après l'espace réservé comme suit.
+    
+        \begin{itemize}[label=•] %•
+        \setlength{\itemsep}{5pt}
+            \item   \textbf{Contexte de gauche :} "[...] The decoder chooses aj with a softmax over all these possible actions;yj is then a deterministic function of aj and x.ring training, we maximize the log-likelihood of y,marginalizing out a.Attention-based copying can be seen as acombination of a standard softmax output layer of an attention-based model and a Pointer Network"
+            \item   \textbf{Contexte de droite :} " ; in a Pointer Network,the only way to generate output is to copy a symbol from the input. Examples, [...]"
+    
+        \begin{figure}[H]
+        	\begin{center}
+        		\includegraphics[width=\textwidth]{figures/chapitre3/articlexp.png}
+        	\end{center}
+        	\caption {Un article dans l'ensemble de données et l'espace réservé de citation qu'il contient}
+        	\label{fig:artexp}
+        \end{figure} 
+        
+        \par Après cela, nous collectons les informations de base de l'article telles que le titre, les auteurs, le lieu et l'année à partir des métadonnées. Dans cet exemple spécifique, nous extrayons les informations suivantes.
+    
+            \item   \textbf{Titre de l'article cible :} Data Recombination for Neural Semantic Parsing ;
+            \item   \textbf{Auteurs de l'article cible :} Robin Jia And Percy Liang ;
+            \item   \textbf{Lieu du papier cible :} ACL;
+            \item   \textbf{Année du papier cible : } 2016
+            \item   \textbf{Résumé de l'article cible :} odeling crisp logical regularities is crucial in semantic parsing, making it difficult for neural models with no task-specific prior knowledge to achieve good results. [...]  Data recombination improves the accuracy of our RNN model on three semantic parsing datasets, leading to new state-of-the-art performance on the standard GeoQuery dataset for models with comparable supervision
+    
+            \item   \textbf{id \& url de l'article cible :} id : $1606.03622v1$ et url \url{https://arxiv.org/pdf/1606.03622v1.pdf}.
+            
+            \par Ensuite, nous recherchons dans notre base de données l'article référencé et collectons les informations de base de l'article référencé comme suit.
+            
+            \item   \textbf{Titre de l'article référence :} Distributed Representations of Words and Phrases and their Compositionality ;
+            \item   \textbf{Auteurs de l'article référence :} Tomas Mikolov And Ilya Sutskever And Kai Chen And Greg Corrado And Jeffrey Dean ;
+            \item   \textbf{Lieu du papier référence :} NIPS ;
+            \item   \textbf{Année du papier référence : } 2015 ;
+            \item   \textbf{Résumé de l'article référence :} The recently introduced continuous Skip-gram model is an efficient method for learning high-quality distributed vector representations that capture a large number of precise syntactic and semantic word relationships [...] Motivated by this example, we present a simple method for finding phrases in text, and show that learning good vector representations for millions of phrases is possible. ;
+            \item   \textbf{id \& url de l'article référence :} id : $1506.03134v1$ et url \url{https://arxiv.org/pdf/1506.03134v1.pdf}.
+            
+            \par Enfin, nous attribuons un identifiant unique à chaque article et incluons les identifiants dans les enregistrements de citations, ce qui complète un enregistrement de citations dans cette ensemble de données.
+        \end{itemize}
+        
+        \subsection{Phase de création du jeu de données et leurs prétraitement }
+        \par Dans cette phase, nous allons appliquer un prétraitement sur notre jeux de données (FullTextPeerRead) qui a été créé avec beaucoup de fichiers PDF comme on l'a expliqué dans la phase d'avant et qui a mené à la création du jeu de données. Comme le montre la figure~\ref{fig:fig2ch3} ainsi que le tableau~\ref{table:2}.
+    
+        \subsubsection{Partitionnement du jeu de données}
+        \par Dans cette étape, nous allons diviser notre jeu de données FullTextPeerRead, nous allons partitionner notre jeu de données en deux blocs en fonction de l'année de publication des articles sources. une partie du jeu de données sont réservés à l’apprentissage et la création du modèl, l'autre partie est réservés au test  et l’évaluation des performances de BERT. Comme le montre la figure~\ref{fig:fig3ch3} suivante.
+        
+            \begin{figure}[H]
+            	\begin{center}
+            		\includegraphics[width=\textwidth]{figures/chapitre3/split.png}
+            	\end{center}
+            	\caption {Le partitionnement du jeu de donnée}
+            	\label{fig:fig3ch3}
+            \end{figure} 
+    
+    \subsection{Phase de création du modèle }
+    \par Comme mentionné dans le chapitre~\ref{chapitre1}, notre question est d'améliorer la recommandation d'article scientifique en se basant uniquement sur le contexte de la recherche et du contenu des articles scientifiques, sans autre information supplémentaire.
+    \par Ce que l'on veut c'est un système de recommandation d'articles tenant compte du contexte, nous devons extraire la relation entre les articles de notre ensemble de données de citations. Par conséquent, Notre modèle de base est simplement basé sur le modèle \textbf{BERT}, comme le montre la figure~\ref{fig:modelbert}. Le modèle utilise BERT pour extraire les intégrations contextuelles du contexte d'entrée, puis utilise un réseau de neurones d'anticipation pour prédire le score de chaque article. Enfin, le modèle génère des recommandations de sortie basées sur les résultats après une couche soft-max de scores. 
+        
+    
+        \begin{figure}[H]
+            \begin{center}
+            	\includegraphics[width=\textwidth]{figures/chapitre3/modelbert.png}
+            \end{center}
+            \caption {L'architecture du modèle de recommandation utilisant BERT }
+            \label{fig:modelbert}
+        \end{figure} 
+    
+    \par Pour notre modèle utilisant BERT, nous définissons les dimensions de l'intégration à $768$ et la longueur maximale du contexte à $128$. Ensuite, nous utilisons l'optimiseur AdamW \cite{ch3adamw} avec un taux d'apprentissage de $0,00005$ et une taille de lot de $16$ pour entraîner et affiner notre modèle en fonction de notre ensemble de données.
+    
+    \par Notre modèle est simplement basé sur le modèle BERT\cite{ch2bert}, comme le montre la figure~\ref{fig:modelbert}. Le modèle utilise BERT pour extraire les intégrations contextuelles du contexte d'entrée, puis utilise un réseau de neurones d'anticipation (FFNN) pour prédire le score de chaque article. Enfin, le modèle génère des recommandations de sortie basées sur les résultats après une couche softmax (équoition~\ref{softmax}) de scores. 
+    
+         %\item \textbf{Un jeton spécial}, \textbf{[CLS]},   au début de notre texte. Ce jeton est utilisé pour les tâches de classification, mais BERT s’y attend quelle que soit votre application. \cite{ch3ref5}
+            
+        %\item \textbf{Un jeton spécial}, \textbf{[SEP]},  pour marquer la fin d’une phrase, ou la séparation entre deux phrases. \cite{ch3ref5}
+    
+    
+    \subsection{Phase de recommandation }    
+    \par L'objectif de la recommandation de citation contextuelle est de recommander des articles scientifique de référence plus pertinents pour leurs contexte de citation. Par conséquent, nous utilisons les métriques courantes suivantes pour évaluer quantitativement nos modèles.
+    
+    %\par Pour faire la recommandation, dans notre modèle basé sur \textbf{BERT}
+    \subsubsection{Métriques de recommandation}
+    \par Nous allons voir de quelle manière évalue avec des métriques la recommandation basée sur les citations et leurs contexte.
+    
+    \begin{itemize}[label=•] %•
+    \setlength{\itemsep}{5pt}
+        
+        \item \textbf{Recall@N :} Il est défini en calculant le pourcentage des articles de référence originaux dans les articles les plus recommandés de l'article scientifique donné. Nous sélectionnons $N = {5, dix, 30, 50, 80} $ pour évaluer nos modèles. Nous utilisons l'abréviation « Rec@N » pour représenter la métrique avec le paramètre N dans les expériences suivantes.
+        
+        \item \textbf{Mean Reciprocal Rank (MRR) :} Il mesure à quelle distance du résultat le mieux classé aux premiers documents de référence pertinents, qui est défini comme dans l'équation~\ref{MRR} :
+        \begin{equation}\label{MRR}
+            MRR = \;  { \frac{ 1 }{ \lvert T \rvert } }{\sum_{ (P_{source};P_{target} ) \in T } \frac{ 1 }{ rank( P_{source};P_{target} ) } }
+        \end{equation}
+        où T est l'ensemble de données que nous avons utilisé, et le $rank( P_{source};P_{target} )$ indique la position du papier référencé vérité terrain $P_{source}$ dans la liste de recommandations de papier $P_{target}$
+        
+        \par Les résultats de l'évaluation sur l'ensemble de test sont indiqués dans le tableau « chapitre 4 : Implémentation et évaluation », où le suffixe "-cased" signifie que le modèle est sensible à la casse, tandis que le suffixe "-uncased" signifie que le modèle est insensible à la casse.
+    
+    \end{itemize}
+
+    %Nous menons d'abord des expériences pour vérifier la reconnaissance du jargon de nos modèles en recherchant « Transformer »[41] et « DenseNet »[3] dans nos modèles et autres moteurs de recherche universitaires. N À partir de l'onglet. 3 et Tab. 4, nous pouvons le voir, notre modèle Citation-BERT peut facilement reconnaître ces jargons et fournir les bons articles, tandis que d'autres moteurs de recherche peuvent fournir de nombreux résultats non pertinents. Notez que ni « Transformer »[41] ni « DenseNet »[3] n'ont leur nom dans le titre de leur article original, ce qui pourrait être la raison des mauvaises performances des moteurs de recherche scientifiques actuels basés sur la correspondance floue, tels que Google Scholar[1] et DBLP[42]. 
+        
+\section{Conclusion}
+\par Dans ce chapitre nous avons proposé une architecture globale de notre solution puis on l’a détaillé en quatre phases comme suite :
+
+\par La première Phase constitution et acquisition de l'ensemble de donées, nous avons expliqué comment les données ont été collecté, leurs origines, la statique et leurs contenus ainsi qu'un exemple. 
+
+\par Dans la deuxième phase de création du jeu de donnée et leurs prétraitement, nous avons partitionné et prétraité le jeu de donnée. 
+
+\par La troisième phase c'est celle de la création du modèle où nous avons exposé le modèle qu'on a construit ainsi que son paramétrage.
+
+\par En dernier, la phase de recommandation, on a expliqué comment les recommendations ont été faites ainsi que la manière de calculer leurs différentes performances calculées avec Recall@K et MRR, des articles recommandés.  

@@ -1,0 +1,135 @@
+\chapter{\textbf{Etat de l'Art}} \label{chapitre1}
+
+\section{Introduction}
+
+
+\par Dans le premier chapitre nous allons définir qu'est-ce-qu'un système de recommandation, son objectif d'un système de recommandation, et répondre à la question  de l'utilité des algorithmes de recommandation, ainsi que sur les différentes types d'alghorithmes principaux des système de recomandation (filtrage collaboratif, basé contenue ou encore hybride). 
+
+\par Nous allons étudier plus en profondeur l'une de ces approches qui n'est t'autre que la recommandation basé sur le contenu et nous parlerons aussi des trois phase qui la compose avant de conclure avec une conclusion sur cette dernière. 
+
+\par Ensuite, nous étudier la recommandation basée contenu sur les citations contextuelle et ces mode d'utilisation (recommandation de citation globale et locale).
+
+\par Enfin, Nous terminerons par une conclusion qui feras état de tous ce qu'on à pu voir tout au long de ce chapitre d'etat de l'art, concernant les système de recommandations.
+
+
+\section{Système de recommandation}
+\par Dans cette section nous allons définir qu'est ce qu'un système de recommandation, voir l'objectif et ainsi répondre à la question de pourquoi utilisé un système de recommandation.
+
+
+    \subsection{Définition d’un système de recommandation}
+    \par Les sytèmes de recommandation (RS) sont considérés comme des techniques logiciels qui filtrent l’information et par la suite fournissent et offrent des suggestions sur des éléments qui sont le plus susceptibles d'être pertinant et de la préférence de l'utilisateur. Ces suggestions sont à même d'inclure divers processus de prise de décision dans des applications du monde réel telle que le divertissement (Youtube, Netflix, Amazon Prime... etc), le commerce en ligne (Amazon, Ebay, Aliexpress... etc), les réseaux sociaux (Facebook, Twitter, LinkedIn... etc) et bien d'autres domaines d'exercice. \cite{ch1ref7}.
+    
+    \subsection{Objectif d’un RS}
+    \par Sans remplacer l’humain, un système de recommandation aide les utilisateurs dans leurs choix, en leurs faisant des suggestions, dans un domaine où ils disposent de peu d'informations. Il appartient à l’humain, de l’utilisateur novice à l’expert aguerri, de suivre les propositions qui lui sont faites par le système de recommandation, de s’inspirer de ces propositions tout en les accommodant ou, de ne pas en tenir compte \cite{hotel:hal-02192576}.
+    
+    \subsection{Pourquoi utiliser des algorithmes de recommandation ?}
+    \par Si tous les grands acteurs de ces secteurs ont vite saisi les opportunités offertes par l’immensité de données mise à disposition par les internautes, c’est que les algorithmes de recommandation sont utiles à bien des fins : \cite{ch1ref17}
+    \begin{itemize}
+    \setlength{\itemsep}{5pt}
+        \item amélioration de l’expérience utilisateur
+        \item augmentation continue des performances clés (durée de visionnement, temps de lecture, panier moyen, raccourcissement des délais de recherche de contenus/produits, etc.)
+        \item gestion d’un volume croissant de données impossible à traiter manuellement
+        \item analyse pointue des données pour des recommandations personnalisées pertinentes
+        \item automatisation du filtrage des données
+    \end{itemize}
+
+\section{Les principaux algorithmes de recommandation} %(approche = class)
+\par Les algorithmes RS sont principalement divisés en plusieurs types (Class), mais nous allons citer les trois types de classes les plus connues et utilisés \cite{ch1ref2} : les systèmes de recommandation de filtrage collaboratif (CF) \cite{ch1ref4}, les systèmes de recommandation basés sur le contenu \cite{ch1ref3}, les systèmes de recommandation hybride \cite{ch1ref5}.
+
+	\subsection{Filtrage Collaboratif}
+	\par Le Filtrage collaboratif (CF) reconnu pour être l'algorithme le plus influent. Il s'appuie sur les évaluations des articles de chaque utilisateur. Il est basé sur l'hypothèse que les utilisateurs qui ont évalué les mêmes éléments avec des notes similaires se verront suscebtibles d'avoir des préférences qui connvergent. 
+	
+	Les CF recommandent l'élément en fonction de l'intérêt d'autres utilisateurs qui partagent les mêmes idées ou identifient des éléments semblables à ceux précédemment notés par l'utilisateur cible.
+	
+	L'algorithme utilise des methodes statistiques pour trouver la similitude entre l'utilisateur ou le vecteur d'élément. La class CF est classées en deux catégories basées sur la mémoire ainsi que sur un modèle \cite{ch1ref6}. 
+	\begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=0.4\textwidth]{figures/chapitre1/rscollabfiltring.png}
+    	\end{center}
+    	\caption {Filtrage Collaboratif \cite{ch1ref16}}
+    	\label{fig:fig1ch1}
+    \end{figure} 
+    
+	\subsection{Recommandation Basée Contenu} 
+	\par Le système de recommandations basés sur le contenu est un algorithme, reposant essentiellement sur le contenu (utilisateurs/éléments) et trouve les similitudes entre eux. on obtient après analyse, des éléments auxquels l'utilisateur s'est déjà montré favorable. une fois cella fait, on obtient le profil des intérêts de l'utilisateur par la suite, le RS pourrait faire une recherche dans la base de données et choisir les éléments adéquoit en fonction du profil à qui sont destinées les recommandations \cite{ch1ref6,ch1ref7}.
+	\begin{figure}[H]
+    	\begin{center}
+    		\includegraphics[width=0.4\textwidth]{figures/chapitre1/rsbasecontenu.png}
+    	\end{center}
+    	\caption {Recommandation Basée Contenu \cite{ch1ref16}}
+    	\label{fig:fig2ch1}
+    \end{figure} 
+    
+	\par Cette class de recommandation exploite le contenu des items pour générer des recommandations. L'idée est de prendre les caractéristiques à partir des items de l'utilisateur dans le but de lui recommander des items similaires. Les deux sources de données nécessaires sont les metadata (méta-données) relatives aux items (citation, titre, auteur, année etc..) et les données du profil utilisateur à qui sont adressées les recommandations. plus le nombre de caractéristiques utilisables, pour les différencier, sera élevé, meilleur en sera le résultat, dans notre cas il s'est avéré qu'avec les articles scientifiques, on a des données (items) textuels élevées \cite{ch1ref15}. En dernier, pour d'avantage comprendre le procédé de cette class, voici trois de ses phases : 
+
+        \subsubsection{Preprocessing et choix des méta-données}
+        \par Le preprocessing consiste à sélectionner et à préparer les méta-données nécessaires au calcul des représentations, en majeure partie du temps, les méthodes se consentrent sur l'exploitation de l'abstract et du titre, car ces méta-données sont disponibles dans la majeure partie du temps offrant une bonne représentativité du contenu de l'article scientifique. Cependant, d’autres méthodes utilisent des compléments d'articles tel que l'auteur, citation, mots-clés etc.. \cite{ch1ref15}.
+        
+        \par L'une des approches est l'utilisation de techniques de plongement lexical ou word embedding. c-à-d. ça permet de représenter un ensemble de mots dans un espace vectoriel de telle manière que les positions relatives des différents mots soient sémantiquement significatives. La plus fréquement utilisée c'est la technique de Word2Vec. ce modèle se base sur l'idée qu'un mots est défini par son contexte \cite{ch1ref15}.
+        
+    
+        \par Enfin, les avancées en deep learning ces dernières années permettent d'avoir de nouvelles techniques. Un ensemble consiste à utiliser un modèle de langage comme BERT (Bidirectional Encoder Representations from Transformers) utilisant le traitement du langage naturel \cite{ch1ref15}. 
+    
+        \subsubsection{Construction du profil de l’utilisateur}
+        \par Pour construire un profil utilisateur qui est accompli en régle générale à partir d'une sélection d'articles scientifiques (ou autres) d'intérêt en utilisant les représentations délivrés par la phase précédente \cite{ch1ref15}. 
+    
+        \subsubsection{Prédiction des évaluations}
+        \par Une fois les deux première phases construites, il ne reste plus qu'à prédire les évaluations. L'une des approches la plus fréquente mais encore la plus simple c'est la similarité consinus entre le profil de l'utilisateur et les articles du corpus. Ou encore une approche est l'utilisation d'un classifieur. Le support vector machine (SVM) est beaucoup utilisé. Un exmple qui consiste à utiliser une régréssion softmax comme classifieur \cite{ch1ref15}.
+        
+        \subsubsection{Conclusion}
+        \par La recommandation basée sur le contenu est l'une des classes les plus explorées dans ce domaine là de la littérature scientifique. Du fait de ces items qui sont riches en contenu exploitable, les méthodes de cette dernière comportent d'autres avantages tel que la facilité de recommandation de nouveau items avec les quels l'utilisateur n'a pas ou peu de transaction. Contrairement au filtrage collaboratif, Elle ne nécessitent pas d'autres utilisateurs. Pour finir, elles peuvent adapter les recommandations en fonction du changement d'intéret de l'utilisateur avec le temps \cite{ch1ref15}.
+        
+        \par Néanmoins elle comporte quelques inconvnients. Il lui faut nécessairement des méta-données riches en contenu sur ses items, un coût de calcule élevé, elle ne résolvent pas le problème du démarrage à froid pour de nouveaux utilisateurs. Enfin, les recommandations ne prennent pas en considération certain critères tel que,  la qualité ou la complexité des articles scientifiques recommandés \cite{ch1ref15}.
+        
+	\subsection{Recommandation Hybride}
+	\par Les approches RS Hybrides utilisent la combinaison de deux ou plusieurs types de systèmes de recommandation, telles que les méthodes collaboratives basées sur le filtrage et le contenu, pour générer une recommandation améliorée. l'utilisation et l'intégration de différentes class améliorera et fournira une recommandation plus améliorée que l'utilisation d'une seule class. l'assemblage des différente approches (CF et CB) qui ont des points forts et faibles, nous amène à la suppression des inconvénients qu'on peux avoir avec une seule méthode. Les Systèmes de recommandations hybrides tentent de tirer parti des forces complémentaires de ces systèmes pour créer un système avec une plus grande robustesse globale \cite{ch1ref7,ch1ref6}.
+	
+	
+\section{Recommandation basée contenu sur les citations contextuelle}
+\par La recommandation de citation contextuelle a été largement explorée depuis sa première proposition par \cite{ch1ref18}. Il s'agit d'un domaine spécial de recommandation d'articles scientifiques.
+
+\par La recommandation basée contenu sur les citations aident les utilisateurs à trouver des éléments pouvant être cités pour leurs informations personnalisées. Généralement les recommandations basées sur contenu sont dévisées en deux types de méthodes différents en fonction de leur mode d'utilisation comme suite \cite{ch1ref9}.
+
+\begin{itemize}
+\setlength{\itemsep}{5pt}
+	\item \textbf{La recommandation de citation globale} :
+	\par La recommandation globale de citation considère l'ensemble du manuscrit comme un document de requête pour générer une liste de recommandation de citation \cite{ch1ref9}. Ce type de recommandation a permis à plusieurs chercheurs de développer des systèmes globaux de recommandations de citations. 
+	\par Le premier a été fait par Gipp, Bell et Hentschel \cite{ch1ref10}, cela à permis par la suite à d'autres de proposer d'autres approches, tel que Mu, Guo, Cai et Hao \cite{ch1ref11} et leurs approches de recommandations de citations axées sur les requêtes à plusieurs niveaux est mutuellement renforcée, où plusieurs types de relations entre les auteurs, les articles et les mots-clés ont été utilisés pour représenter les informations contextuelles globales. et bien d'autres approches par la suite (\cite{ch1ref12,ch1ref13,ch1ref14} etc..). 
+	
+	\item \textbf{la recommandation de citation locale} : 
+	\par Plus connue sous le nom de recommandation de citation contextuelle, considère uniquement le contexte de citation, qui est le texte où se trouve la citation, comme une requête. Autrement dit, ces modèles se concentrent uniquement sur les phrases entourant un espace réservé qui représente une citation \cite{ch1ref9}.
+	
+	Contrairement à la recommandation générale de citation basée sur la similitude entre les documents, la citation contextuelle est une étude qui trouve des articles très pertinents en fonction du contexte de la citation ou de la syntaxe \cite{ch1ref8}.
+	
+\end{itemize}
+
+\par L'approche basée sur le contenu est la première méthode qui a été explorée. ont a proposé un modèle de pertinence basé sur le contexte non paramétrique qui mesure la pertinence entre le contexte donné et les documents candidats pour les recommandations globales et locales comme on a pus le voir juste avant, et ils \cite{ch1ref19} ont élargi les modèles en modèle de langue, similarité contextuelle, pertinence de sujet et dépendance. modèle de fonctionnalité. Ensuite, ils\cite{ch1ref20} ont appliqué le réseau de neurones à leur modèle et ont mené d'autres expériences.  
+enfin,  \cite{ch1ref20} ont défini une tâche de recommandation de citation en plusieurs langues et utilisent des intégrations extraites du contexte pour effectuer la recommandation.
+
+%\section{Analyse de données textuelles}
+%    \subsection{}
+%    \par Ce processus nécessite les disponibilités des données. Dans notre cas nous nous sommes chargés %de la construction des jeux de données. Le processus du prétraitement est constitué de plusieurs %opérations que nous allons les citer ci-dessous : 
+%        
+%    \begin{enumerate}
+    %
+%        \item \textbf{La tokenisation :} Est un processus obligatoire du prétraitement du texte pour tout type d’analyse, ce processus consiste `a transformer une phrase en un vecteur de mots qui %constitue cette phrase. \cite{ch3ref4}
+%        
+        %\item \textbf{Le stemming :} Est utile pour traiter les probl`emes de parcimonie ainsi que pour %normaliser le vocabulaire, a pour un objectif normaliser les termes dans sa forme de base ou %racine.\cite{ch3ref4}
+%
+%        \item \textbf{La suppression de mots vides :} Les mots vides (Stopwords), sont des mots très %courants qui n’ont pas de sens où qui ont un sens inférieur `a ceux d’autres mots-clés dans le %texte par exemple ”\textbf{le}”, ”\textbf{la}” ou ”\textbf{des}”, etc. ils occupent la majeur %partie du texte qui doivent être supprimé, pour se concentrer sur les mots importants. %\cite{ch3ref4}
+        
+  %      \item \textbf{La normalisation du texte :} La normalisation de texte est le processus de %transformation de texte en une forme canonique (standard). Par exemple, les mots %"\textbf{gooood}" et "\textbf{gud}" peuvent être transformés en "\textbf{good}", sa forme %canonique. \cite{ch3ref4}
+  %      
+      %  \item \textbf{La suppression de bruit :} Cette étape est très importante car la ponctuation %n’ajoute aucune information ni valeur supplémentaire. Par conséquent, la suppression de toutes %ces instances contribuera à réduire la taille des données et à augmenter l’efficacité du %calcul. \cite{ch3ref4}
+        
+   % \end{enumerate}
+    
+%\section{Génération des recommandations}
+%\par Dans la majorité des cas, on retourne simplement un classement des articles selon les prédiction d'évaluation acquis %lors de l'étape précédente. 
+					
+
+\section{Conclusion}
+\par Le système de recommendations est un domaine qui est considéré et utilisé comme des téchniques logiciels qui filtrent l'information et dans des domaines différents ou les utilisateurs disposent de peu d'unformations offrent des suggestions de plus en plus pertinante c'est ce que cherche à faire Youtube, Facebook ou encore Amazon dans des domaines différents d'une simple recherche, au commerce en ligne jusuqu'à la vidéo et les divertissements.
+
+\par Dans ce chapitre nous avons défini les systèmes de recommandations, l'objectif de ces derniers, et pourquoi utiliser de tels alghorithmes. nous avons parlé des principaux algorithmes de recommandations qui se constituent de recommandations filtrages colaboratifs basées contenu et hybride, Par la suite, on a également vu plus en profondeur la recommandation basée contenu, au cours de cette dernière nous avons vu les trois phases qui la composent, ainsi nous avons conclu que cette dernière était l'une des classes les plus explorées, elle ne nécessite pas d'utilisateurs, cependant, elle comporte quelques inconvients tel que la présence de méta-données et elle ne résout pas le problème du démarrage à froid. Enfin, nous clôturons ce chapitre, suite aux travaux fait juste avant nous avons débouché sur les recommandations basées contenu sur les citations contextuelles ainsi que ces modes d'utilisation de citation ( globale et local).
+
